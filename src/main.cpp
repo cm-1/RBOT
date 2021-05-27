@@ -44,13 +44,13 @@
 using namespace std;
 using namespace cv;
 
-cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame)
+cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame, cv::Point3f color)
 {
     // render the models with phong shading
     RenderingEngine::Instance()->setLevel(0);
     
     vector<Point3f> colors;
-    colors.push_back(Point3f(1.0, 0.5, 0.0));
+    colors.push_back(color);
     //colors.push_back(Point3f(0.2, 0.3, 1.0));
     RenderingEngine::Instance()->renderShaded(vector<Model*>(objects.begin(), objects.end()), GL_FILL, colors, true);
     
@@ -84,14 +84,14 @@ int main(int argc, char *argv[])
 
     // camera image size
     int width = 640;
-    int height = 512;
+    int height = 480;
     
     // near and far plane of the OpenGL view frustum
-    float zNear = 10.0;
-    float zFar = 10000.0;
+    float zNear = 0.1;
+    float zFar = 100;
     
     // camera instrinsics
-    Matx33f K = Matx33f(650.048, 0, 324.328, 0, 647.183, 257.323, 0, 0, 1);
+    Matx33f K = Matx33f(555.9, 0, 339.2, 0, 594.8, 255.1, 0, 0, 1);
     Matx14f distCoeffs =  Matx14f(0.0, 0.0, 0.0, 0.0);
     
     // distances for the pose detection template generation
@@ -99,35 +99,108 @@ int main(int argc, char *argv[])
     
     // load 3D objects
     vector<Object3D*> objects;
-    objects.push_back(new Object3D("data/squirrel_demo_low.obj", 15, -35, 515, 55, -20, 205, 1.0, 0.55f, distances));
+    objects.push_back(new Object3D("data/HeadlessHorse4-Small.obj", 0.125, -0.55, 7.5, 180, 270, 0, 1.0, 0.55f, distances));
     //objects.push_back(new Object3D("data/a_second_model.obj", -50, 0, 600, 30, 0, 180, 1.0, 0.55f, distances2));
     
     // create the pose estimator
     PoseEstimator6D* poseEstimator = new PoseEstimator6D(width, height, zNear, zFar, K, distCoeffs, objects);
-    
+
     // move the OpenGL context for offscreen rendering to the current thread, if run in a seperate QT worker thread (unnessary in this example)
     //RenderingEngine::Instance()->getContext()->moveToThread(this);
     
     // active the OpenGL context for the offscreen rendering engine during pose estimation
     RenderingEngine::Instance()->makeCurrent();
+
+    // Use the primary webcam "0" as input.
+    // Can pass in "1" for another webcam
+    // (e.g., a virtual webcam, which can be really handy for tests).
+    // Can also pass in video filenames, e.g., "D:\Movies\TestMovie.mp4".
+    // If you use a video filename, you'll want a test in the while loop to
+    // reset the movie to the start when it finishes, e.g., something like:
+    //     if (frame.empty()) {
+    //         cap.set(cv::CAP_PROP_POS_FRAMES, 0);
+    //     }
+    VideoCapture cap(0);
+    // Check if camera opened successfully
+    if (!cap.isOpened()) {
+            cout << "Error starting the webcam capture!" << endl;
+            return -1;
+    }
     
     int timeout = 0;
     
     bool showHelp = true;
-    
+
+    // Variables used for periodically re-attempting tracking.
+    int frameNumOfReset = 0;
+    int frameCounter = 0;
+    bool hasBeenReset = false;
+    bool needsInitializing = false;
+    cv::Point3f redColor(1.0f, 0.0f, 0.0f);
+    cv::Point3f greenColor(0.0f, 1.0f, 0.0f);
+
     Mat frame;
     while(true)
     {
         // obtain an input image
-        frame = imread("data/frame.png");
+        cap >> frame; // Get frame from videocapture instead of imread();
         
         // the main pose uodate call
         poseEstimator->estimatePoses(frame, false, true);
+
+        // Check if tracking has been lost.
+        // Note: this only returns true BEFORE the object is uninitialized with
+        // the toggleTracking() call in this if-statement body.
+        // After the object is uninitialized by this call, isTrackingLost() will
+        // return "false" instead.
+        bool trackingLost = objects[0]->isTrackingLost();
+        if (trackingLost) {
+            // Uninitialize the object, to stop tracking it.
+            poseEstimator->toggleTracking(frame, 0, false);
+            // Reset its pose to its default starting pose.
+            // Reset also set's the object's "initialized" state to false,
+            // but so did toggleTracking(), so there's no change there.
+            objects[0]->reset();
+
+            // Note that we've reset the object, and note when we did.
+            hasBeenReset = true;
+            frameNumOfReset = frameCounter;
+        }
+
+        // If some time has passed since we reset the object, we will want to
+        // try tracking it again.
+        // Right now, we do it 25 frames after the tracking was lost.
+        // The reason to not try again right away is to give the user some time
+        // to move the object properly into place.
+        // If tracking starts again when they're still placing the object,
+        // poor tracking can be the result.
+        // Still, apologies for the "magic number" of "25" here.
+        int framesSinceReset = frameCounter - frameNumOfReset;
+        if (hasBeenReset && framesSinceReset > 25) {
+            needsInitializing = true;
+        }
+
+        // Render the object as green if tracking is successful, else red.
+        bool useRed = (needsInitializing || hasBeenReset || trackingLost);
+        cv::Point3f colorToDraw = useRed ? redColor : greenColor;
+
+        // ToggleTracking on the object, re-initializing it and re-attempting
+        // to track it.
+        if (needsInitializing) {
+            cout << "Resetting!" << endl;
+            poseEstimator->toggleTracking(frame, 0, false);
+            needsInitializing = false;
+            hasBeenReset = false;
+        }
+
+        frameCounter++;
+
         
+
         cout << objects[0]->getPose() << endl;
         
         // render the models with the resulting pose estimates ontop of the input image
-        Mat result = drawResultOverlay(objects, frame);
+        Mat result = drawResultOverlay(objects, frame, colorToDraw);
         
         if(showHelp)
         {
