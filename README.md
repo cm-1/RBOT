@@ -1,3 +1,15 @@
+# Background Behind This Fork
+Right now, this fork is primarily for making small changes to the code in a way that lets me share public links to commits. The plan currently is to have separate branches for each small functionality change.
+
+I am also making more substantial changes to the original RBOT code as part of my MSc research (getting the code to run on a phone, working to improve the fps, working on some specific applications using this code, etc.), but am not quite ready to publicly share most of these changes yet. Said changes may eventually come to this repo or another one.
+
+Current branches of interest:
+
+ * `webcam`: a branch for tracking an object via the user's webcam and for handling initial poses by letting the user line up the object with an on-screen reference, similar to how some Vuforia apps work.
+
+**Below is the original README from the original RBOT repo:**
+
+
 # RBOT: Region-based Object Tracking
 
 RBOT is a novel approach to real-time 6DOF pose pose estimation of rigid 3D objects using a monocular RGB camera. The key idea is to derive a region-based cost function using temporally consistent local color histograms and optimize it for pose with a Gauss-Newton scheme. The approach outperforms previous methods in cases of cluttered backgrounds, heterogenous objects, and occlusions. The proposed histograms are also used as statistical object descriptors within a template matching strategy for pose recovery after temporary tracking loss e.g. caused by massive occlusion or if the object leaves the camera's field of view. These descriptors can be trained online within a couple of seconds moving a handheld object in front of a camera.
