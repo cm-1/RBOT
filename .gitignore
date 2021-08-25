@@ -1,0 +1,6 @@
+# A .gitignore for this branch.
+# Because this is a Qt project, and so the build files are outside of these
+# directories and are instead located in parent directories, this is
+# primarily for ignoring the custom models in the ./data/ directory.
+
+data/
