@@ -198,7 +198,7 @@ void RenderingEngine::init(const Matx33f& K, int width, int height, float zNear,
     
     initRenderingBuffers();
     
-    shaderFolder = "src/";
+    shaderFolder = "shaders/";
     
     initShaderProgram(silhouetteShaderProgram, "silhouette");
     initShaderProgram(phongblinnShaderProgram, "phongblinn");
