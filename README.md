@@ -6,6 +6,7 @@ I am also making more substantial changes to the original RBOT code as part of m
 Current branches of interest:
 
  * `webcam`: a branch for tracking an object via the user's webcam and for handling initial poses by letting the user line up the object with an on-screen reference, similar to how some Vuforia apps work.
+ * `cmakeChanges`: a branch to showcase the changes I made to get the CMakeLists.txt provided by RBOT working on Windows 10.
 
 **Below is the original README from the original RBOT repo:**
 
