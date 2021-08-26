@@ -4,3 +4,4 @@
 # primarily for ignoring the custom models in the ./data/ directory.
 
 data/
+.vscode/
