@@ -4,4 +4,6 @@
 # primarily for ignoring the custom models in the ./data/ directory.
 
 data/
+
 .vscode/
+RBOT_ANDROID.pro.user
