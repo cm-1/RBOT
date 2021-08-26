@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/HeadlessHorse4-Small.obj</file>
+        <file>shaders/normals_fragment_shader.glsl</file>
+        <file>shaders/normals_vertex_shader.glsl</file>
+        <file>shaders/phongblinn_fragment_shader.glsl</file>
+        <file>shaders/phongblinn_vertex_shader.glsl</file>
+        <file>shaders/silhouette_fragment_shader.glsl</file>
+        <file>shaders/silhouette_vertex_shader.glsl</file>
+         <file>main.qml</file>
+    </qresource>
+</RCC>
