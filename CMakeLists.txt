@@ -45,8 +45,8 @@ endforeach()
 # on your computer.
 # I _think_ some of these can also be added to the System path instead, but I
 # am not entirely sure how you would handle the debug/release switching then.
-Set(OpenCV_DIR debug "D:/Libraries/opencv/out/build/x64-Release" optimized "D:/Libraries/opencv/out/build/x64-Release")
-Set(Qt5_DIR "D:/Programs/Qt/5.15.0/msvc2019_64/lib/cmake/Qt5")
+Set(OpenCV_DIR debug "D:/Libraries/opencv/out/build/x64-Debug" optimized "D:/Libraries/opencv/out/build/x64-Release")
+Set(Qt5_DIR "D:/Programs/Qt/5.15.1/msvc2019_64/lib/cmake/Qt5")
 Set(ASSIMP_LIBRARIES debug "D:/Libraries/assimp/out/build/x64-Debug/code/assimp-vc142-mtd.lib" optimized "D:/Libraries/assimp/out/build/x64-Release/code/assimp-vc142-mt.lib")
 Set(ASSIMP_INCLUDE_DIR debug "D:/Libraries/assimp/out/build/x64-Debug/include" optimized "D:/Libraries/assimp/out/build/x64-Release/include")
 Set(ASSIMP_INCLUDE_DIR_CONFIG "D:/Libraries/assimp/include")
