@@ -71,7 +71,9 @@ PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
         objects[i]->setModelID(i+1);
         this->objects.push_back(objects[i]);
         this->objects[i]->initBuffers();
-        this->objects[i]->generateTemplates();
+        // Right now, we're just evaluating the pose tracking against a dataset.
+        // Template generation is expensive and not required for that.
+        //this->objects[i]->generateTemplates();
         this->objects[i]->reset();
     }
     
