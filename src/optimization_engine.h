@@ -60,8 +60,11 @@ public:
      *
      *  @param width  The width in pixels of the camera frame at full resolution.
      *  @param height  The height in pixels of the camera frame at full resolution.
+     *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
+     *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
+     * 
      */
-    OptimizationEngine(int width, int height);
+    OptimizationEngine(int width, int height, float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
     
     ~OptimizationEngine();
     
@@ -89,7 +92,13 @@ private:
     
     int width;
     int height;
-    
+
+    // Parameters for Tikhonov regularization.
+    float tikhonovRotParam;
+    float tikhonovTransParam;
+    cv::Matx66f tikhonovMat;
+    cv::DecompTypes matInversionMethod;
+
     void runIteration(std::vector<Object3D*> &objects, const std::vector<cv::Mat> &imagePyramid, int level);
     
     void parallel_computeJacobians(Object3D *object, const cv::Mat &frame, const cv::Mat &depth, const cv::Mat &depthInv, const cv::Mat &sdt, const cv::Mat &xyPos, const cv::Rect &roi, const cv::Mat &mask, int m_id, int level, cv::Matx66f &wJTJ, cv::Matx61f &JT, int threads);

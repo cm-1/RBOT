@@ -39,7 +39,8 @@ using namespace std;
 using namespace cv;
 
 
-OptimizationEngine::OptimizationEngine(int width, int height)
+OptimizationEngine::OptimizationEngine(int width, int height, float tikhonovRotParam, float tikhonovTransParam)
+: tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
 {
     renderingEngine = RenderingEngine::Instance();
     
@@ -47,6 +48,20 @@ OptimizationEngine::OptimizationEngine(int width, int height)
     
     this->width = width;
     this->height = height;
+
+    tikhonovMat = cv::Matx66f::eye();
+    for (int i = 0; i < 3; ++i)
+    {
+        tikhonovMat(i, i) *= tikhonovRotParam;
+        tikhonovMat(i + 3, i + 3) *= tikhonovTransParam;
+    }
+
+    // If no Tikhonov regularization is used, the Hessian approximation will be
+    // positive-definite, and so Cholesky can be used. Otherwise, it will just
+    // be symmetric, which is not sufficient.
+    matInversionMethod = cv::DECOMP_LU;
+    if (tikhonovRotParam == 0.f && tikhonovTransParam == 0.f)
+        matInversionMethod = cv::DECOMP_CHOLESKY;
 }
 
 OptimizationEngine::~OptimizationEngine()
@@ -238,8 +253,8 @@ Rect OptimizationEngine::compute2DROI(Object3D* object, const cv::Size& maxSize,
 void OptimizationEngine::applyStepGaussNewton(Object3D* object, const Matx66f& wJTJ, const Matx61f& JT)
 {
     // Gauss-Newton step in se3
-    Matx61f delta_xi = -wJTJ.inv(DECOMP_CHOLESKY)*JT;
-    
+    Matx61f delta_xi = -(wJTJ - tikhonovMat).inv(matInversionMethod)*JT;
+
     // get the current pose
     Matx44f T_cm = object->getPose();
     

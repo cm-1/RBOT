@@ -73,8 +73,12 @@ public:
      *  @param  K The intrinsic camera matrix.
      *  @param  distCoeffs The cameras lens distortion coefficients.
      *  @param  objects A collection of all 3D objects to be tracked.
+     *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
+     *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
      */
-    PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K, const cv::Matx14f &distCoeffs, std::vector<Object3D*> &objects);
+    PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K,
+    const cv::Matx14f &distCoeffs, std::vector<Object3D*> &objects,
+    float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
     
     ~PoseEstimator6D();
     
