@@ -1,0 +1,60 @@
+
+
+a_regular - bakingsoda: 0.835
+
+
+a_regular - broccolisoup: 0.904
+
+
+a_regular - clown: 0.989
+
+
+a_regular - cube: 0.87
+
+
+a_regular - koalacandy: 0.64
+
+
+b_dynamiclight - bakingsoda: 0.825
+
+
+b_dynamiclight - broccolisoup: 0.9
+
+
+b_dynamiclight - clown: 0.983
+
+
+b_dynamiclight - cube: 0.864
+
+
+b_dynamiclight - koalacandy: 0.61
+
+
+c_noisy - bakingsoda: 0.833
+
+
+c_noisy - broccolisoup: 0.914
+
+
+c_noisy - clown: 0.833
+
+
+c_noisy - cube: 0.523
+
+
+c_noisy - koalacandy: 0.538
+
+
+d_occlusion - bakingsoda: 0.802
+
+
+d_occlusion - broccolisoup: 0.837
+
+
+d_occlusion - clown: 0.896
+
+
+d_occlusion - cube: 0.799
+
+
+d_occlusion - koalacandy: 0.576

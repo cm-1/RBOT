@@ -1,0 +1,82 @@
+
+
+--------------------------------------------------------------------------------
+Regular - bakingsoda:
+Success rate = 0.446
+Avg frame time = 57203.2 us
+--------------------------------------------------------------------------------
+Regular - broccolisoup:
+Success rate = 0.84
+Avg frame time = 44013.7 us
+--------------------------------------------------------------------------------
+Regular - clown:
+Success rate = 0.927
+Avg frame time = 37840.4 us
+--------------------------------------------------------------------------------
+Regular - cube:
+Success rate = 0.78
+Avg frame time = 38108.1 us
+--------------------------------------------------------------------------------
+Regular - koalacandy:
+Success rate = 0.552
+Avg frame time = 48694.5 us
+--------------------------------------------------------------------------------
+Dynamic Light - bakingsoda:
+Success rate = 0.468
+Avg frame time = 56236.1 us
+--------------------------------------------------------------------------------
+Dynamic Light - broccolisoup:
+Success rate = 0.832
+Avg frame time = 42746.3 us
+--------------------------------------------------------------------------------
+Dynamic Light - clown:
+Success rate = 0.923
+Avg frame time = 37008.8 us
+--------------------------------------------------------------------------------
+Dynamic Light - cube:
+Success rate = 0.765
+Avg frame time = 37068.1 us
+--------------------------------------------------------------------------------
+Dynamic Light - koalacandy:
+Success rate = 0.545
+Avg frame time = 50377.1 us
+--------------------------------------------------------------------------------
+Noisy - bakingsoda:
+Success rate = 0.454
+Avg frame time = 56579.9 us
+--------------------------------------------------------------------------------
+Noisy - broccolisoup:
+Success rate = 0.825
+Avg frame time = 44446.7 us
+--------------------------------------------------------------------------------
+Noisy - clown:
+Success rate = 0.768
+Avg frame time = 43380.2 us
+--------------------------------------------------------------------------------
+Noisy - cube:
+Success rate = 0.354
+Avg frame time = 40123.8 us
+--------------------------------------------------------------------------------
+Noisy - koalacandy:
+Success rate = 0.45
+Avg frame time = 52093.8 us
+--------------------------------------------------------------------------------
+Unmodelled Occlusion - bakingsoda:
+Success rate = 0.434
+Avg frame time = 60434.2 us
+--------------------------------------------------------------------------------
+Unmodelled Occlusion - broccolisoup:
+Success rate = 0.763
+Avg frame time = 44814.6 us
+--------------------------------------------------------------------------------
+Unmodelled Occlusion - clown:
+Success rate = 0.853
+Avg frame time = 39940.3 us
+--------------------------------------------------------------------------------
+Unmodelled Occlusion - cube:
+Success rate = 0.695
+Avg frame time = 37816.7 us
+--------------------------------------------------------------------------------
+Unmodelled Occlusion - koalacandy:
+Success rate = 0.51
+Avg frame time = 49872.7 us

@@ -230,6 +230,10 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
         // obtain an input image
         frame = imread(configFramesLoc + FrameLongNum(i + 1) + ".png");
 
+        // Simulating perfect motion prediction:
+        // objects[0]->setPose(gtPosesMain[i + 1]);
+        // objects[0]->setInitialPose(gtPosesMain[i + 1]);
+
         // the main pose update call
         poseEstimator->estimatePoses(frame, SHOULD_UNDISTORT_FRAME, false);
 
