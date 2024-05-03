@@ -7,8 +7,11 @@ Current branches of interest:
 
  * `webcam`: a branch for tracking an object via the user's webcam and for handling initial poses by letting the user line up the object with an on-screen reference, similar to how some Vuforia apps work.
  * `cmakeChanges`: a branch to showcase the changes I made to get the CMakeLists.txt provided by RBOT working on Windows 10.
+ * `simpleAndroid`: a branch to showcase the changes I made to get RBOT running on Android as a Qt project. The ideal would be to work on something that can be used outside of Qt, e.g., to use with the Unity game engine, but this branch probably won't cover that.
 
-**Below is the original README from the original RBOT repo:**
+The README files have also been fixed to use the updated RBOT dataset download link, since the original leads to a 403 error right now.
+
+**Below is the original README (except for the fixed download link) from the original RBOT repo:**
 
 
 # RBOT: Region-based Object Tracking
