@@ -22,7 +22,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         augrealityfilter.cpp \
-        main.cpp
+        main.cpp \
+        model.cpp \
+        object3d.cpp \
+        optimization_engine.cpp \
+        pose_estimator6d.cpp \
+        rendering_engine.cpp \
+        signed_distance_transform2d.cpp \
+        tclc_histograms.cpp \
+        template_view.cpp \
+        transformations.cpp
 
 
 # Default rules for deployment.
@@ -31,7 +40,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    augrealityfilter.h
+    AugRealityFilter.h \
+    model.h \
+    object3d.h \
+    optimization_engine.h \
+    pose_estimator6d.h \
+    rendering_engine.h \
+    signed_distance_transform2d.h \
+    tclc_histograms.h \
+    template_view.h \
+    transformations.h
 
 # Different rules for Android, Linux PC, and Windows PC.
 # I've only tested for armeabi-v7a for Android.

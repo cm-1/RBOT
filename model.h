@@ -44,6 +44,8 @@
 
 #include "transformations.h"
 
+class RenderingEngine;
+
 /**
  *  A 3d model class based on the ASSIMP library mostly implemented
  *  wrt the OBJ/PLY file formats. The class provides functions to load the
@@ -81,9 +83,10 @@ public:
      *  a specified OpenGL data primitive type using VBOs.
      *
      *  @param  program    The shader programm to be used.
+     *  @param  engine    The rendering engine to be used.
      *  @param  primitives The primitive type that shall be used for drawing (e.g. GL_POINTS, GL_LINES,...). The default value is set to GL_TRIANGLES.
      */
-    void draw(QOpenGLShaderProgram *program, GLint primitives = GL_TRIANGLES);
+    void draw(QOpenGLShaderProgram *program, RenderingEngine *engine, GLint primitives = GL_TRIANGLES);
     
     /**
      *  The 3d data is packed into VOBs and uploaded to the GPU.
@@ -225,6 +228,8 @@ public:
      *  and initialization state to false.
      */
     void reset();
+
+    void resetPose();
     
 private:
     int m_id;

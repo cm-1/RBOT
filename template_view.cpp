@@ -47,7 +47,7 @@ TemplateView::TemplateView(Object3D *object, float alpha, float beta, float gamm
     renderingEngine = RenderingEngine::Instance();
     
     renderingEngine->setLevel(0);
-    renderingEngine->renderSilhouette(object, GL_FILL, false, 1.0f, 1.0f, 1.0f, true);
+    renderingEngine->renderSilhouette(object, false, 1.0f, 1.0f, 1.0f, true);
     
     Mat mask0 = renderingEngine->downloadFrame(RenderingEngine::MASK);
     Mat depth0 = renderingEngine->downloadFrame(RenderingEngine::DEPTH);
@@ -98,7 +98,7 @@ TemplateView::TemplateView(Object3D *object, float alpha, float beta, float gamm
         roiPyramid[level] = roi;
     
         renderingEngine->setLevel(level);
-        renderingEngine->renderSilhouette(object, GL_FILL, false, 1.0f, 1.0f, 1.0f, true);
+        renderingEngine->renderSilhouette(object, false, 1.0f, 1.0f, 1.0f, true);
         
         Mat mask = renderingEngine->downloadFrame(RenderingEngine::MASK);
         mask = mask(roi).clone();

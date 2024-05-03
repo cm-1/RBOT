@@ -34,6 +34,7 @@
  */
 
 #include "rendering_engine.h"
+#include "model.h"
 
 #include <iostream>
 
@@ -188,17 +189,17 @@ void RenderingEngine::init(const Matx33f& K, int width, int height, float zNear,
     glEnable(GL_DEPTH_TEST);
     
     //INVERT DEPTH BUFFER
-    glDepthRange(1, 0);
-    glClearDepth(0.0f);
+    glDepthRangef(1, 0);
+    glClearDepthf(0.0f);
     glDepthFunc(GL_GREATER);
     
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    // Commented out because not present in OpenGL ES: glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
     initRenderingBuffers();
     
-    shaderFolder = "src/";
+    shaderFolder = ":/shaders/";
     
     initShaderProgram(silhouetteShaderProgram, "silhouette");
     initShaderProgram(phongblinnShaderProgram, "phongblinn");
@@ -286,7 +287,7 @@ bool RenderingEngine::initShaderProgram(QOpenGLShaderProgram *program, QString s
     return true;
 }
 
-void RenderingEngine::renderSilhouette(Model* model, GLenum polyonMode, bool invertDepth, float r, float g, float b, bool drawAll)
+void RenderingEngine::renderSilhouette(Model* model, bool invertDepth, float r, float g, float b, bool drawAll)
 {
     vector<Model*> models;
     models.push_back(model);
@@ -294,11 +295,11 @@ void RenderingEngine::renderSilhouette(Model* model, GLenum polyonMode, bool inv
     vector<Point3f> colors;
     colors.push_back(Point3f(r, g, b));
     
-    renderSilhouette(models, polyonMode, invertDepth, colors, drawAll);
+    renderSilhouette(models, invertDepth, colors, drawAll);
 }
 
 
-void RenderingEngine::renderShaded(Model* model, GLenum polyonMode, float r, float g, float b, bool drawAll)
+void RenderingEngine::renderShaded(Model* model, float r, float g, float b, bool drawAll)
 {
     vector<Model*> models;
     models.push_back(model);
@@ -306,26 +307,26 @@ void RenderingEngine::renderShaded(Model* model, GLenum polyonMode, float r, flo
     vector<Point3f> colors;
     colors.push_back(Point3f(r, g, b));
     
-    renderShaded(models, polyonMode, colors, drawAll);
+    renderShaded(models, colors, drawAll);
 }
 
 
-void RenderingEngine::renderNormals(Model* model, GLenum polyonMode, bool drawAll)
+void RenderingEngine::renderNormals(Model* model, bool drawAll)
 {
     vector<Model*> models;
     models.push_back(model);
     
-    renderNormals(models, polyonMode, drawAll);
+    renderNormals(models, drawAll);
 }
 
 
-void RenderingEngine::renderSilhouette(vector<Model*> models, GLenum polyonMode, bool invertDepth, const std::vector<cv::Point3f>& colors, bool drawAll)
+void RenderingEngine::renderSilhouette(vector<Model*> models, bool invertDepth, const std::vector<cv::Point3f>& colors, bool drawAll)
 {
     glViewport(0, 0, width, height);
     
     if(invertDepth)
     {
-        glClearDepth(1.0f);
+        glClearDepthf(1.0f);
         glDepthFunc(GL_LESS);
     }
     
@@ -344,7 +345,8 @@ void RenderingEngine::renderSilhouette(vector<Model*> models, GLenum polyonMode,
             
             Matx44f modelViewProjectionMatrix = projectionMatrix*modelViewMatrix;
             
-            silhouetteShaderProgram->bind();
+            makeCurrent();
+            silhouetteShaderProgram->bind(); // Gets error "program is not valid in the current context".
             silhouetteShaderProgram->setUniformValue("uMVPMatrix", QMatrix4x4(modelViewProjectionMatrix.val));
             silhouetteShaderProgram->setUniformValue("uAlpha", 1.0f);
             
@@ -359,20 +361,20 @@ void RenderingEngine::renderSilhouette(vector<Model*> models, GLenum polyonMode,
             }
             silhouetteShaderProgram->setUniformValue("uColor", QVector3D(color.x, color.y, color.z));
             
-            glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
+            // Commented out because not present in OpenGL ES: glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
             
-            model->draw(silhouetteShaderProgram);
+            model->draw(silhouetteShaderProgram, this);
         }
     }
     
-    glClearDepth(0.0f);
+    glClearDepthf(0.0f);
     glDepthFunc(GL_GREATER);
     
     glFinish();
 }
 
 
-void RenderingEngine::renderShaded(vector<Model*> models, GLenum polyonMode, const std::vector<cv::Point3f>& colors, bool drawAll)
+void RenderingEngine::renderShaded(vector<Model*> models, const std::vector<cv::Point3f>& colors, bool drawAll)
 {
     glViewport(0, 0, width, height);
     
@@ -414,16 +416,16 @@ void RenderingEngine::renderShaded(vector<Model*> models, GLenum polyonMode, con
             }
             phongblinnShaderProgram->setUniformValue("uColor", QVector3D(color.x, color.y, color.z));
             
-            glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
+            // Commented out because not present in OpenGL ES: glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
             
-            model->draw(phongblinnShaderProgram);
+            model->draw(phongblinnShaderProgram, this);
         }
     }
     
     glFinish();
 }
 
-void RenderingEngine::renderNormals(vector<Model*> models, GLenum polyonMode, bool drawAll)
+void RenderingEngine::renderNormals(vector<Model*> models, bool drawAll)
 {
     glViewport(0, 0, width, height);
     
@@ -450,9 +452,9 @@ void RenderingEngine::renderNormals(vector<Model*> models, GLenum polyonMode, bo
             normalsShaderProgram->setUniformValue("uNormalMatrix", QMatrix3x3(normalMatrix.val));
             normalsShaderProgram->setUniformValue("uAlpha", 1.0f);
             
-            glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
+            // Commented out because not present in OpenGL ES: glPolygonMode(GL_FRONT_AND_BACK, polyonMode);
             
-            model->draw(normalsShaderProgram);
+            model->draw(normalsShaderProgram, this);
         }
     }
     

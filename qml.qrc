@@ -7,6 +7,6 @@
         <file>shaders/phongblinn_vertex_shader.glsl</file>
         <file>shaders/silhouette_fragment_shader.glsl</file>
         <file>shaders/silhouette_vertex_shader.glsl</file>
-         <file>main.qml</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

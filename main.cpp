@@ -1,12 +1,15 @@
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QQmlApplicationEngine>
+#include <QThread>
 
 #include "AugRealityFilter.h"
 
 // This is primarily boilerplate.
 int main(int argc, char *argv[])
 {
+    qDebug() << "MAIN THREAD: " << QThread::currentThreadId();
+
     QGuiApplication app(argc, argv);
     QQuickView view;
 

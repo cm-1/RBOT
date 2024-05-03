@@ -33,6 +33,9 @@
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Code modified by Christopher Mossman to add in temporary file support
+// so that code could run on Android.
+
 #include "model.h"
 #include "tclc_histograms.h"
 
@@ -42,6 +45,11 @@
 #include <assimp/scene.h>
 #include <assimp/mesh.h>
 #include <assimp/postprocess.h>
+
+#include <QFile>
+#include <QTemporaryDir>
+
+#include "rendering_engine.h"
 
 using namespace std;
 using namespace cv;
@@ -129,7 +137,7 @@ bool Model::isInitialized()
 }
 
 
-void Model::draw(QOpenGLShaderProgram *program, GLint primitives)
+void Model::draw(QOpenGLShaderProgram *program, RenderingEngine *engine, GLint primitives)
 {
     vertexBuffer.bind();
     program->enableAttributeArray("aPosition");
@@ -148,7 +156,7 @@ void Model::draw(QOpenGLShaderProgram *program, GLint primitives)
         GLuint size = offsets.at(i + 1) - offsets.at(i);
         GLuint offset = offsets.at(i);
         
-        glDrawElements(primitives, size, GL_UNSIGNED_INT, (GLvoid*)(offset*sizeof(GLuint)));
+        engine->glDrawElements(primitives, size, GL_UNSIGNED_INT, (GLvoid*)(offset*sizeof(GLuint)));
     }
 }
 
@@ -220,12 +228,33 @@ void Model::reset()
     T_cm = T_i;
 }
 
+void Model::resetPose() {
+    T_cm = T_i;
+}
 
 void Model::loadModel(const string modelFilename)
 {
     Assimp::Importer importer;
+
+    QString filePath;
+
+    // https://doc.qt.io/qt-5/qtglobal.html
+    // https://stackoverflow.com/a/43887668
+    QTemporaryDir tempDir;
+    if (tempDir.isValid()) {
+      filePath = tempDir.path() + "/temporaryRbotFile.obj";
+    }
+
+    if (QFile::exists(filePath))
+    {
+        QFile::remove(filePath);
+    }
+    bool success = QFile::copy(QString::fromStdString(modelFilename), filePath);
+
+
+    std::string stringVersion = filePath.toStdString();
     
-    const aiScene* scene = importer.ReadFile(modelFilename, aiProcessPreset_TargetRealtime_Fast);
+    const aiScene* scene = importer.ReadFile(stringVersion, aiProcessPreset_TargetRealtime_Fast);
     
     aiMesh *mesh = scene->mMeshes[0];
     

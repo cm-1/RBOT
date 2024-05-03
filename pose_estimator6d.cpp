@@ -44,7 +44,7 @@ bool sortTemplateView(std::pair<float, TemplateView*> a, std::pair<float, Templa
 }
 
 
-PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K, const cv::Matx14f &distCoeffs, vector<Object3D*> &objects)
+PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K, const cv::Mat &distCoeffs, vector<Object3D*> &objects)
 {
     renderingEngine = RenderingEngine::Instance();
     optimizationEngine = new OptimizationEngine(width, height);
@@ -71,7 +71,10 @@ PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
         objects[i]->setModelID(i+1);
         this->objects.push_back(objects[i]);
         this->objects[i]->initBuffers();
-        this->objects[i]->generateTemplates();
+        // Removing template generation because it is a RAM hog.
+        // It slows things down on PC and uses too much RAM for a phone.
+        // Other alternatives to pose resetting/detection can be used instead.
+        // this->objects[i]->generateTemplates();
         this->objects[i]->reset();
     }
     

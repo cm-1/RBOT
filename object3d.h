@@ -132,6 +132,11 @@ public:
      *  configuration.
      */
     void reset();
+
+    /**
+     *  Resets the pose of the object to the initial configuration.
+     */
+    void resetPose();
     
 private:
     bool trackingLost;

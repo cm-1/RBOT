@@ -74,7 +74,7 @@ public:
      *  @param  distCoeffs The cameras lens distortion coefficients.
      *  @param  objects A collection of all 3D objects to be tracked.
      */
-    PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K, const cv::Matx14f &distCoeffs, std::vector<Object3D*> &objects);
+    PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K, const cv::Mat &distCoeffs, std::vector<Object3D*> &objects);
     
     ~PoseEstimator6D();
     
@@ -120,7 +120,7 @@ private:
     int height;
     
     cv::Matx33f K;
-    cv::Matx14f distCoeffs;
+    cv::Mat distCoeffs;
     
     cv::Mat map1;
     cv::Mat map2;

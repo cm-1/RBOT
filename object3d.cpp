@@ -268,3 +268,7 @@ void Object3D::reset()
     
     trackingLost = false;
 }
+
+void Object3D::resetPose() {
+    Model::resetPose();
+}

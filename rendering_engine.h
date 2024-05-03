@@ -41,15 +41,16 @@
 #include <QOpenGLContext>
 #include <QOffscreenSurface>
 
-#include <QGLFramebufferObject>
+#include <QOpenGLFramebufferObject>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLExtraFunctions>
 
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 
 #include "transformations.h"
-#include "model.h"
+
+class Model;
 
 /**
  *  This class implements an OpenGL-based offscreen rendering engine for generating
@@ -59,7 +60,7 @@
  *  to a specified image pyramid level at lower resolutions. The class is  implemented
  *  as a singleton.
  */
-class RenderingEngine : public QOpenGLFunctions_3_3_Core
+class RenderingEngine : public QOpenGLExtraFunctions
 {
 public:
     enum FrameType {
@@ -190,36 +191,36 @@ public:
      *  obtain a binary silhouette mask of it wrt its current pose.
      *
      *  @param model The model to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param invertDepth Whether to invert the depth test during rendering (default = false).
      *  @param r The red intensity of the model surface albedo in [0, 1] (default = 1.0).
      *  @param g The green intensity of the model surface albedo in [0, 1] (default = 1.0).
      *  @param b The blue intensity of the model surface albedo in [0, 1] (default = 1.0).
      *  @param drawAll Whether to draw the model even if it has not yet been initlaized for tracking (default = false).
      */
-    void renderSilhouette(Model *model, GLenum polyonMode, bool invertDepth = false, float r = 1.0f, float g = 1.0f, float b = 1.0f, bool drawAll = false);
+    void renderSilhouette(Model *model, bool invertDepth = false, float r = 1.0f, float g = 1.0f, float b = 1.0f, bool drawAll = false);
     
     /**
      *  Renders a single model wrt its current pose using Phong shading.
      *
      *  @param model The model to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param r The red intensity of the model surface albedo in [0, 1] (default = 1.0).
      *  @param g The green intensity of the model surface albedo in [0, 1] (default = 0.5).
      *  @param b The blue intensity of the model surface albedo in [0, 1] (default = 0.0).
      *  @param drawAll Whether to draw the model even if it has not yet been initlaized for tracking (default = false).
      */
-    void renderShaded(Model *model, GLenum polyonMode, float r = 1.0f, float g = 0.5f, float b = 0.0f, bool drawAll = false);
+    void renderShaded(Model *model, float r = 1.0f, float g = 0.5f, float b = 0.0f, bool drawAll = false);
     
     /**
      *  Renders the per pixel surface normals of single model wrt its current pose where the
      *  normal direction is mapped from (x, y, z) in [-1, 1] to (r, g, b) in [0, 1].
      *
      *  @param model The model to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param drawAll Whether to draw the model even if it has not yet been initlaized for tracking (default = false).
      */
-    void renderNormals(Model *model, GLenum polyonMode, bool drawAll = false);
+    void renderNormals(Model *model, bool drawAll = false);
     
     /**
      *  Renders a multiple models in a common scene with a constant color and no shading
@@ -228,22 +229,22 @@ public:
      *  get rendered with a constant color corresponding to their model index in the red channel.
      *
      *  @param model The models to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param invertDepth Whether to invert the depth test during rendering (default = false).
      *  @param colors A vector of colors to be used for each model (default = empty).
      *  @param drawAll Whether to draw all models even if they been not yet initlaized for tracking (default = false).
      */
-    void renderSilhouette(std::vector<Model*> models, GLenum polyonMode, bool invertDepth = false, const std::vector<cv::Point3f> &colors = std::vector<cv::Point3f>(), bool drawAll = false);
+    void renderSilhouette(std::vector<Model*> models, bool invertDepth = false, const std::vector<cv::Point3f> &colors = std::vector<cv::Point3f>(), bool drawAll = false);
     
     /**
      *  Renders a multiple models in a common scene wrt their current poses using Phong shading.
      *
      *  @param model The models to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param colors A vector of colors to be used for each model (default = empty).
      *  @param drawAll Whether to draw the model even if it has not yet been initlaized for tracking (default = false).
      */
-    void renderShaded(std::vector<Model*> models, GLenum polyonMode, const std::vector<cv::Point3f> &colors = std::vector<cv::Point3f>(), bool drawAll = false);
+    void renderShaded(std::vector<Model*> models, const std::vector<cv::Point3f> &colors = std::vector<cv::Point3f>(), bool drawAll = false);
     
     /**
      *  Renders the per pixel surface normals of multiple models in a common scene wrt their
@@ -251,10 +252,10 @@ public:
      *  in [0, 1].
      *
      *  @param model The model to be rendered.
-     *  @param polyonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
+     *  REMOVED PARAM (because not in OpenGL ES) polygonMode The OpenGL polygon mode to be used (e.g. GL_FILL).
      *  @param drawAll Whether to draw the model even if it has not yet been initlaized for tracking (default = false).
      */
-    void renderNormals(std::vector<Model*> models, GLenum polyonMode, bool drawAll = false);
+    void renderNormals(std::vector<Model*> models, bool drawAll = false);
     
     /**
      *  Projects the eight corners of a model's bouding box into the image and computes the
