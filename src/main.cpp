@@ -44,6 +44,8 @@
 using namespace std;
 using namespace cv;
 
+bool savedOverlay = false;
+
 cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame)
 {
     // render the models with phong shading
@@ -75,6 +77,14 @@ cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame
             }
         }
     }
+    if (!savedOverlay)
+    {
+        savedOverlay = true;
+        cv::imwrite("C:\\Users\\U1\\Desktop\\BlenderVisRBOT\\overlay.png", result);
+
+
+    }
+
     return result;
 }
 
@@ -114,6 +124,10 @@ int main(int argc, char *argv[])
     int timeout = 0;
     
     bool showHelp = true;
+
+    cout << "Normalization:" << endl;
+    cout << objects[0]->getNormalization() << endl;
+    cout << "---------------------------------" << endl;
     
     Mat frame;
     while(true)

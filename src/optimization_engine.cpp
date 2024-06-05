@@ -47,6 +47,7 @@ OptimizationEngine::OptimizationEngine(int width, int height)
     
     this->width = width;
     this->height = height;
+    this->wroteFirstNewPose = false;
 }
 
 OptimizationEngine::~OptimizationEngine()
@@ -165,6 +166,13 @@ void OptimizationEngine::runIteration(vector<Object3D*>& objects, const vector<M
             
             // update the pose by computing the Gauss-Newton step
             applyStepGaussNewton(objects[o], wJTJ, JT);
+
+            if (!wroteFirstNewPose)
+            {
+                wroteFirstNewPose = true;
+                std::cout << "First new pose: (level" << level << "):" << std::endl;
+                std::cout << objects[o]->getPose() << std::endl;
+            }
         }
     }
 }

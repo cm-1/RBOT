@@ -34,6 +34,7 @@
  */
 
 #include "pose_estimator6d.h"
+#include <opencv2/highgui.hpp>
 
 using namespace std;
 using namespace cv;
@@ -50,6 +51,9 @@ PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
     optimizationEngine = new OptimizationEngine(width, height);
     
     SDT2D = new SignedDistanceTransform2D(8.0f);
+
+    savedImgs = false;
+    frameNum = 0;
     
     this->width = width;
     this->height = height;
@@ -71,7 +75,7 @@ PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
         objects[i]->setModelID(i+1);
         this->objects.push_back(objects[i]);
         this->objects[i]->initBuffers();
-        this->objects[i]->generateTemplates();
+        //this->objects[i]->generateTemplates();
         this->objects[i]->reset();
     }
     
@@ -187,6 +191,42 @@ void PoseEstimator6D::estimatePoses(cv::Mat &frame, bool undistortFrame, bool ch
                 }
             }
         }
+    }
+    frameNum++;
+    if (frameNum > 50 && !savedImgs)
+    {
+        savedImgs = true;
+        renderingEngine->setLevel(2);
+        std::vector<cv::Point3f> colourVec;
+        renderingEngine->renderSilhouette(vector<Model*>(objects.begin(), objects.end()), GL_FILL, false, colourVec, true);
+
+        Mat mask = renderingEngine->downloadFrame(RenderingEngine::MASK);
+
+        Mat uncroppedSDT, uncroppedXYPos;
+        SDT2D->computeTransform(mask, uncroppedSDT, uncroppedXYPos, 8, objects[0]->getModelID());
+
+        //savedImgs = true;
+        Mat visSDT, visXYPos;
+        uncroppedSDT.convertTo(visSDT, CV_8UC1, 1.0, 8.0);
+
+        uncroppedXYPos.forEach<cv::Point_<int32_t>>(FindDeltaXYPos());
+
+        Mat xyPos3D = Mat(uncroppedXYPos.rows, uncroppedXYPos.cols, CV_32SC3);
+
+        int from_to[] = { 0,0, 1,1 };
+        cv::mixChannels(&uncroppedXYPos, 1, &xyPos3D, 1, from_to, 2);
+        xyPos3D.convertTo(visXYPos, CV_8UC3, 1.0, 8.0);
+
+        std::vector<uchar> array;
+        if (visXYPos.isContinuous()) {
+            // array.assign(mat.datastart, mat.dataend); // <- has problems for sub-matrix like mat = big_mat.row(i)
+            array.assign(visXYPos.data, visXYPos.data + visXYPos.total() * visXYPos.channels());
+        }
+
+
+        cv::imwrite("C:\\Users\\U1\\Desktop\\BlenderVisRBOT\\sdtSmallGT.png", visSDT);
+        //cv::imwrite("C:\\Users\\U1\\Desktop\\BlenderVisRBOT\\xyDeltaSmall.png", visXYPos);
+
     }
 }
 
@@ -414,6 +454,8 @@ float PoseEstimator6D::evaluateEnergyFunction(Object3D *object, const Mat &mask,
         
         Mat sdt, xyPos;
         SDT2D->computeTransform(croppedMask, sdt, xyPos, 8, object->getModelID());
+
+        
         
         Mat heaviside;
         parallel_for_(cv::Range(0, 8), Parallel_For_convertToHeaviside(sdt, heaviside, 8));

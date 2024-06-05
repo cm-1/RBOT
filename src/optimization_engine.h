@@ -89,6 +89,8 @@ private:
     
     int width;
     int height;
+
+    bool wroteFirstNewPose;
     
     void runIteration(std::vector<Object3D*> &objects, const std::vector<cv::Mat> &imagePyramid, int level);
     

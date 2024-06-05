@@ -1,9 +1,32 @@
+# Background Behind This Branch
+Some very rough WIP changes to save some textures to disk and run some Blender
+Python code on them to generate a visualization for how I _thought_ RBOT 
+treated pose error. 
+
+In generating the visualization, however, I noticed an example didn't make sense,
+and found what might be a sign "error" in the original RBOT paper's statement of
+the error derivative; I put "error" in quotes because the code obviously works,
+and there is an interpretation of what the code is doing where it makes sense.
+Basically, the RBOT paper omits a negative sign from the derivative of the
+negative-sloped smoothed Heaviside function that they use. BUT, this is compensated
+for by the fact that, when this omission is undone by adding a negative sign to
+the derivative of the SDT texture (so that we consider the texture to be moving
+when the pose changes and the pixel staying fixed in space, rather than vice versa),
+then you actually arrive at a more sensible interpretation of pose error and its
+derivative, though one that the original paper does not seem to state explicitly
+(or, if I misinterpreted, then at least is plagued by these sign typos).
+
+If the above description seems a bit rough/confusing... yes, I need to devote
+a bit more time to writing down a better explanation, preferably with some
+math typsetting and some diagrams. But there's no time at the present, so this
+commit will have to do for now.
+
 # Background Behind This Fork
 Right now, this fork is primarily for making small changes to the code in a way that lets me share public links to commits. The plan currently is to have separate branches for each small functionality change.
 
 I am also making more substantial changes to the original RBOT code as part of my MSc research (getting the code to run on a phone, working to improve the fps, working on some specific applications using this code, etc.), but am not quite ready to publicly share most of these changes yet. Said changes may eventually come to this repo or another one.
 
-Current branches of interest:
+Other branches of interest:
 
  * `webcam`: a branch for tracking an object via the user's webcam and for handling initial poses by letting the user line up the object with an on-screen reference, similar to how some Vuforia apps work.
  * `cmakeChanges`: a branch to showcase the changes I made to get the CMakeLists.txt provided by RBOT working on Windows 10.

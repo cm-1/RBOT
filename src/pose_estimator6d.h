@@ -150,6 +150,8 @@ private:
     
     float evaluateEnergyFunction_local(TCLCHistograms *tclcHistograms, const std::vector<cv::Point3i> &centersIDs, const cv::Mat &binned, const cv::Mat &heaviside, const cv::Rect &roi, int offsetX, int offsetY, int level);
     
+    bool savedImgs;
+    int frameNum;
 };
 
 /**
@@ -822,5 +824,11 @@ public:
     }
 };
 
+struct FindDeltaXYPos {
+    void operator ()(cv::Point_<int32_t>& pixel, const int* position) const {
+        pixel.x = pixel.x - position[1];
+        pixel.y = pixel.y - position[0];
+    }
+};
 
 #endif //POSE_ESTIMATOR6D_H

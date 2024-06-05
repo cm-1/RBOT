@@ -85,6 +85,7 @@ RenderingEngine::~RenderingEngine(void)
 
 void RenderingEngine::destroy()
 {
+    if (instance == NULL) return;
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
