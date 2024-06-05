@@ -36,6 +36,9 @@ endforeach()
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
+message("Searching for OpenCV and ASSIMP installs.")
+message("If not found, make sure they are installed (not just built) and consider setting CMAKE_PREFIX_PATH to point to them.")
+message("E.G., could look like C:\\Libraries\\opencv-480;C:\\Libraries\\assimp-524;")
 # If CMake cannot find these libraries, set a CMAKE_PREFIX_PATH to point to them.
 # E.g., on my computer, it is: "C:\Libraries\opencv-480;C:\Libraries\assimp-524;"
 FIND_PACKAGE(OpenCV REQUIRED)
