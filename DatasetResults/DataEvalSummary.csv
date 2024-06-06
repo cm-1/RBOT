@@ -1,0 +1,21 @@
+;FG Contour;Default;Perfect Motion Est
+a_regular - bakingsoda;0.445;0.446;0.835
+a_regular - broccolisoup;0.861;0.84;0.904
+a_regular - clown;0.921;0.927;0.989
+a_regular - cube;0.806;0.78;0.87
+a_regular - koalacandy;0.576;0.552;0.64
+b_dynamiclight - bakingsoda;0.446;0.468;0.825
+b_dynamiclight - broccolisoup;0.858;0.832;0.9
+b_dynamiclight - clown;0.92;0.923;0.983
+b_dynamiclight - cube;0.795;0.765;0.864
+b_dynamiclight - koalacandy;0.586;0.545;0.61
+c_noisy - bakingsoda;0.437;0.454;0.833
+c_noisy - broccolisoup;0.857;0.825;0.914
+c_noisy - clown;0.779;0.768;0.833
+c_noisy - cube;0.354;0.354;0.523
+c_noisy - koalacandy;0.474;0.45;0.538
+d_occlusion - bakingsoda;0.433;0.434;0.802
+d_occlusion - broccolisoup;0.778;0.763;0.837
+d_occlusion - clown;0.841;0.853;0.896
+d_occlusion - cube;0.727;0.695;0.799
+d_occlusion - koalacandy;0.555;0.51;0.576
