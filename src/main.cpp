@@ -33,6 +33,9 @@
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Code modified by Christopher Mossman in order to perform evaluation on
+// other datasets.
+
 #include <fstream>
 #include <QApplication>
 #include <QThread>
@@ -52,22 +55,30 @@ using namespace cv;
 // leave this as false.
 #define SHOULD_UNDISTORT_FRAME false
 
-float TRANS_ERROR_THRESH = 1000 * 0.05f;
-float ROT_ERROR_THRESH = 5.0f * CV_PI / 180.0f;
+#define SHOW_RESULTS false
+
+// Some parameters to prevent program from using more RAM than available:
+#define ALLOW_SIMPLER_MESHES false // For meshes in RBOT paper, set to "false"
+#define NUM_HIST_BINS 8 // Default, for RBOT paper, is 32
+
+const float TRANS_ERROR_THRESH = 1000 * 0.05f;
+const float ROT_ERROR_THRESH = 5.0f * CV_PI / 180.0f;
+
+QDir datasetDir("D:\\Datasets\\RBOT_dataset\\RBOT_dataset");
+QDir simplifiedMeshDir("D:\\Datasets\\RBOT_dataset\\SimplerModels");
 
 
 struct EvalConfig {
     std::string bodName;
     std::string seqName;
     bool modelOcclusions;
+    bool useSimplifiedMesh;
 };
 
 
-bool SHOW_RESULTS = false;
 std::vector<cv::Matx44f> gtPosesMain;
 std::vector<cv::Matx44f> gtPosesOccluding;
 
-QDir datasetDir("D:\\Datasets\\RBOT_dataset\\RBOT_dataset");
 
 cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame)
 {
@@ -160,6 +171,7 @@ std::string FrameLongNum(int frameNum)
 }
 
 // Evaluate a single object for a single type of scene.
+// Returns the pose success ratio (or -1.f if an .obj file is not found).
 float EvalSingleConfig(const EvalConfig& run_configuration)
 {
     // camera image size
@@ -183,11 +195,27 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     QString bodStrQt = QString::fromStdString(run_configuration.bodName);
     QString seqStrQt = QString::fromStdString(run_configuration.seqName);
 
-    QString localObjPath = bodStrQt + "/" + bodStrQt + ".obj";
+    std::string objPath;
 
-    std::string objPath = datasetDir.filePath(localObjPath).toStdString();
+    if (run_configuration.useSimplifiedMesh)
+    {
+        QString localObjPath = bodStrQt + "_low_res.obj";
+        QString fullObjPath = simplifiedMeshDir.filePath(localObjPath);
+        objPath = fullObjPath.toStdString();
+        if (!QFile::exists(fullObjPath))
+        {
+            std::cerr << "Error! Could not find file: " << objPath << std::endl;
+            return -1.f;
+        }
+    }
+    else
+    {
+        QString localObjPath = bodStrQt + "/" + bodStrQt + ".obj";
+        objPath = datasetDir.filePath(localObjPath).toStdString();
+    }
 
-    objects.push_back(new Object3D(objPath, 15, -35, 515, 55, -20, 205, 1.0, 0.55f, distances));
+
+    objects.push_back(new Object3D(objPath, 15, -35, 515, 55, -20, 205, 1.0, 0.55f, distances, NUM_HIST_BINS));
     //objects.push_back(new Object3D("data/a_second_model.obj", -50, 0, 600, 30, 0, 180, 1.0, 0.55f, distances2));
 
     objects[0]->setPose(gtPosesMain[0]);
@@ -196,8 +224,11 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     if (run_configuration.modelOcclusions)
     {
         std::string squirrelPath = datasetDir.filePath("squirrel_small.obj").toStdString();
+        if (run_configuration.useSimplifiedMesh)
+            squirrelPath = simplifiedMeshDir.filePath("squirrel_small_verylow_res.obj").toStdString();
+        
 
-        objects.push_back(new Object3D(squirrelPath, 15, -35, 515, 55, -20, 205, 1.0, 0.55f, distances));
+        objects.push_back(new Object3D(squirrelPath, 15, -35, 515, 55, -20, 205, 1.0, 0.55f, distances, NUM_HIST_BINS));
 
         objects[1]->setPose(gtPosesOccluding[0]);
         objects[1]->setInitialPose(gtPosesOccluding[0]);
@@ -308,50 +339,52 @@ int main(int argc, char *argv[])
 
     ReadPosesFromFile(datasetDir.filePath("poses_second.txt"), gtPosesOccluding);
 
-    // Most of the models, including the squirrel used for modelled occlusions,
-    // use too much RAM for their histograms for my computer to handle well.
-    // So I'm just going to test a subset and leave the full set here but
-    // commented out.
 
     std::vector<std::string> bodyNames
     {
-        "bakingsoda", "broccolisoup", "clown", "cube", "koalacandy"
+        "ape", "bakingsoda", "benchviseblue", "broccolisoup", "cam", "can",
+        "cat", "clown", "cube", "driller", "duck", "eggbox", "glue", "iron",
+        "koalacandy", "lamp", "phone", "squirrel"
     };
-
     std::vector<std::string> sequenceNames
     {
-         "a_regular", "b_dynamiclight", "c_noisy", "d_occlusion"
+        "a_regular", "b_dynamiclight", "c_noisy", "d_occlusion", "d_occlusion"
     };
+    
+    std::vector<bool> occlusionBools{false, false, false, false, true};
 
-    std::vector<bool> occlusionBools{false, false, false, false};
-
-    // std::vector<std::string> bodyNames
-    // {
-    //     "ape", "bakingsoda", "benchviseblue", "broccolisoup", "cam", "can",
-    //     "cat", "clown", "cube", "driller", "duck", "eggbox", "glue", "iron",
-    //     "koalacandy", "lamp", "phone", "squirrel"
-    // };
-    // std::vector<std::string> sequenceNames
-    // {
-    //     "a_regular", "b_dynamiclight", "c_noisy", "d_occlusion", "d_occlusion"
-    // };
-    // std::vector<bool> occlusionBools{false, false, false, false, true};
+    // Most of the models, including the squirrel used for modelled occlusions,
+    // use too much RAM for their full 32-bins-per-channel histograms for my
+    // computer to handle well. So either the number of histogram bins needs to
+    // be reduced to something like 8 per channel, or we need to use simpler
+    // polygon meshes, which is what this array of bools will take care of.
+   std::vector<bool> useSimplifiedBools
+   {
+       true, false, true, false, true, true,
+       true, false, false, true, true, true, true, true,
+       false, true, true, true
+   };
 
     std::vector<EvalConfig> evalConfigs;
 
     for (size_t i = 0; i < sequenceNames.size(); ++i) {
-        for (const auto& bodyName: bodyNames) {
+        for (size_t j = 0; j < bodyNames.size(); ++j) {
+            bool useSimple = ALLOW_SIMPLER_MESHES && useSimplifiedBools[j];
             evalConfigs.push_back(EvalConfig{
-                bodyName, sequenceNames[i], occlusionBools[i]
+                bodyNames[j], sequenceNames[i], occlusionBools[i], useSimple
             });
         }
     }
 
     for (int i = 0; i < int(evalConfigs.size()); ++i) {
         float avgSuccess = EvalSingleConfig(evalConfigs[i]);
-        std::string modString = evalConfigs[i].modelOcclusions ? " (modeled)" : "";
+        std::string modString = "";
+        if (evalConfigs[i].modelOcclusions)
+            modString = evalConfigs[i].useSimplifiedMesh ? " (modeled (SIMPLIFIED))" : " (modeled)";
+        std::string simpleString = evalConfigs[i].useSimplifiedMesh ? " (SIMPLIFIED)" : "";
+        std::string binsString = (NUM_HIST_BINS != 32) ? " (" + std::to_string(NUM_HIST_BINS) + "-bins)" : "";
         std::cout << evalConfigs[i].seqName << modString << " - "
-            << evalConfigs[i].bodName << ": " << avgSuccess << std::endl;
+            << evalConfigs[i].bodName << simpleString << binsString << ": " << avgSuccess << std::endl;
     }
 
 

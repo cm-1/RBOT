@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #include "object3d.h"
 #include "tclc_histograms.h"
@@ -45,7 +46,7 @@ bool sortDistance(std::pair<float, int> a, std::pair<float, int> b)
     return a.first < b.first;
 }
 
-Object3D::Object3D(const string objFilename, float tx, float ty, float tz, float alpha, float beta, float gamma, float scale, float qualityThreshold,  vector<float> &templateDistances) : Model(objFilename, tx, ty, tz, alpha, beta, gamma, scale)
+Object3D::Object3D(const string objFilename, float tx, float ty, float tz, float alpha, float beta, float gamma, float scale, float qualityThreshold,  vector<float> &templateDistances, int numBins) : Model(objFilename, tx, ty, tz, alpha, beta, gamma, scale)
 {
     this->trackingLost = false;
     
@@ -55,7 +56,7 @@ Object3D::Object3D(const string objFilename, float tx, float ty, float tz, float
     
     this->numDistances = (int)templateDistances.size();
     
-    this->tclcHistograms = new TCLCHistograms(this, 32, 40, 10.0f);
+    this->tclcHistograms = new TCLCHistograms(this, numBins, 40, 10.0f);
     
     // icosahedron geometry for generating the base templates
     baseIcosahedron.push_back(Vec3f(0, 1, 1.61803));

@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #ifndef OBJECT3D_H
 #define OBJECT3D_H
@@ -67,8 +68,9 @@ public:
      *  @param scale  A scaling factor applied to the model in order change its size independent of the original data.
      *  @param qualityThreshold  The individual quality tracking quality threshold used to decide whether tracking and detection have been successful (should be within [0.5,0.6]).
      *  @param templateDistances  A vector of absolute Z-distance values to be used for template generation (typically 3 values: a close, an intermediate and a far distance)
+     *  @param  numBins The number of bins per color channel.
      */
-    Object3D(const std::string objFilename, float tx, float ty, float tz, float alpha, float beta, float gamma, float scale, float qualityThreshold, std::vector<float> &templateDistances);
+    Object3D(const std::string objFilename, float tx, float ty, float tz, float alpha, float beta, float gamma, float scale, float qualityThreshold, std::vector<float> &templateDistances, int numBins = 32);
     
     ~Object3D();
     
