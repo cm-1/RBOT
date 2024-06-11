@@ -1,0 +1,98 @@
+
+a_regular - ape (SIMPLIFIED): 0.865
+
+a_regular - benchviseblue (SIMPLIFIED): 0.983
+
+a_regular - cam (SIMPLIFIED): 0.884
+
+a_regular - can (SIMPLIFIED): 0.88
+
+a_regular - cat (SIMPLIFIED): 0.956
+
+a_regular - driller (SIMPLIFIED): 0.945
+
+a_regular - duck (SIMPLIFIED): 0.889
+
+a_regular - eggbox (SIMPLIFIED): 0.831
+
+a_regular - glue (SIMPLIFIED): 0.597
+
+a_regular - iron (SIMPLIFIED): 0.894
+
+a_regular - lamp (SIMPLIFIED): 0.062
+a_regular - phone (SIMPLIFIED): -1
+Error! Could not find file: D:/Datasets/RBOT_dataset/SimplerModels/phone_demo_low.obj
+
+a_regular - squirrel (SIMPLIFIED): 0.077
+
+b_dynamiclight - ape (SIMPLIFIED): 0.869
+
+b_dynamiclight - benchviseblue (SIMPLIFIED): 0.982
+
+b_dynamiclight - cam (SIMPLIFIED): 0.884
+
+b_dynamiclight - can (SIMPLIFIED): 0.881
+
+b_dynamiclight - cat (SIMPLIFIED): 0.953
+
+b_dynamiclight - driller (SIMPLIFIED): 0.954
+
+b_dynamiclight - duck (SIMPLIFIED): 0.887
+
+b_dynamiclight - eggbox (SIMPLIFIED): 0.821
+
+b_dynamiclight - glue (SIMPLIFIED): 0.585
+
+b_dynamiclight - iron (SIMPLIFIED): 0.828
+
+b_dynamiclight - lamp (SIMPLIFIED): 0.049
+b_dynamiclight - phone (SIMPLIFIED): -1
+Error! Could not find file: D:/Datasets/RBOT_dataset/SimplerModels/phone_demo_low.obj
+
+b_dynamiclight - squirrel (SIMPLIFIED): 0.05
+
+c_noisy - ape (SIMPLIFIED): 0.83
+
+c_noisy - benchviseblue (SIMPLIFIED): 0.917
+
+c_noisy - cam (SIMPLIFIED): 0.682
+
+c_noisy - can (SIMPLIFIED): 0.683
+
+c_noisy - cat (SIMPLIFIED): 0.936
+
+c_noisy - driller (SIMPLIFIED): 0.851
+
+c_noisy - duck (SIMPLIFIED): 0.9
+
+c_noisy - eggbox (SIMPLIFIED): 0.434
+
+c_noisy - glue (SIMPLIFIED): 0.278
+
+c_noisy - iron (SIMPLIFIED): 0.712
+
+c_noisy - lamp (SIMPLIFIED): 0.039
+c_noisy - phone (SIMPLIFIED): -1
+Error! Could not find file: D:/Datasets/RBOT_dataset/SimplerModels/phone_demo_low.obj
+
+c_noisy - squirrel (SIMPLIFIED): 0.017
+
+d_occlusion - ape (SIMPLIFIED): 0.822
+
+d_occlusion - benchviseblue (SIMPLIFIED): 0.937
+
+d_occlusion - cam (SIMPLIFIED): 0.811
+
+d_occlusion - can (SIMPLIFIED): 0.836
+
+d_occlusion - cat (SIMPLIFIED): 0.905
+
+d_occlusion - driller (SIMPLIFIED): 0.913
+
+d_occlusion - duck (SIMPLIFIED): 0.811
+
+d_occlusion - eggbox (SIMPLIFIED): 0.758
+
+d_occlusion - glue (SIMPLIFIED): 0.538
+
+d_occlusion - iron (SIMPLIFIED): 0.775
