@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #ifndef OPTIMIZATION_ENGINE
 #define OPTIMIZATION_ENGINE
@@ -60,11 +61,12 @@ public:
      *
      *  @param width  The width in pixels of the camera frame at full resolution.
      *  @param height  The height in pixels of the camera frame at full resolution.
+     *  @param useNearestContourForFG  Use nearest-contour pixels for both BG and FG calcs.
      *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
      *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
      * 
      */
-    OptimizationEngine(int width, int height, float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
+    OptimizationEngine(int width, int height, bool useNearestContourForFG, float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
     
     ~OptimizationEngine();
     
@@ -92,6 +94,8 @@ private:
     
     int width;
     int height;
+
+    bool useNearestContourFG;
 
     // Parameters for Tikhonov regularization.
     float tikhonovRotParam;
@@ -132,6 +136,7 @@ private:
     float _fx, _fy, _zNear, _zFar;
     
     bool maskAvailable;
+    bool _useNearestContourFG;
     
     cv::Rect _roi;
     
@@ -143,7 +148,7 @@ private:
     int _threads;
     
 public:
-    Parallel_For_computeJacobiansGN(TCLCHistograms *tclcHistograms, const cv::Mat &frame, const cv::Mat &sdt, const cv::Mat &xyPos, const cv::Mat &depth, const cv::Mat &depthInv, const cv::Matx33f &K, float zNear, float zFar, const cv::Rect &roi, const cv::Mat &mask, int m_id, int level, std::vector<cv::Matx66f> &wJTJCollection, std::vector<cv::Matx61f> &JTCollection, int threads)
+    Parallel_For_computeJacobiansGN(TCLCHistograms *tclcHistograms, const cv::Mat &frame, const cv::Mat &sdt, const cv::Mat &xyPos, const cv::Mat &depth, const cv::Mat &depthInv, const cv::Matx33f &K, float zNear, float zFar, const cv::Rect &roi, const cv::Mat &mask, int m_id, int level, std::vector<cv::Matx66f> &wJTJCollection, std::vector<cv::Matx61f> &JTCollection, bool useNearestContourFG, int threads)
     {
         frameData = frame.data;
         
@@ -185,6 +190,8 @@ public:
             maskAvailable = true;
             _m_id = m_id;
         }
+
+        _useNearestContourFG = useNearestContourFG;
         
         K_inv = K.inv();
         K_invData = K_inv.val;
@@ -374,7 +381,7 @@ public:
                     int zIdx;
                     
                     // get the closest pixel on the contour for pixels in the background
-                    if(dist > 0)
+                    if(_useNearestContourFG || dist > 0)
                     {
                         int xPos = xyPosData[2*idx];
                         int yPos = xyPosData[2*idx+1];

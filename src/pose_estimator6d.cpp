@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #include "pose_estimator6d.h"
 
@@ -46,11 +47,11 @@ bool sortTemplateView(std::pair<float, TemplateView*> a, std::pair<float, Templa
 
 PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
 const cv::Matx33f &K, const cv::Matx14f &distCoeffs, vector<Object3D*> &objects,
-float tikhonovRotParam, float tikhonovTransParam)
+bool useNearestContourFG, float tikhonovRotParam, float tikhonovTransParam)
 {
     renderingEngine = RenderingEngine::Instance();
     optimizationEngine = new OptimizationEngine(
-        width, height, tikhonovRotParam, tikhonovTransParam
+        width, height, useNearestContourFG, tikhonovRotParam, tikhonovTransParam
     );
     
     SDT2D = new SignedDistanceTransform2D(8.0f);

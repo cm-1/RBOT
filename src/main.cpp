@@ -57,6 +57,8 @@ using namespace cv;
 
 #define SHOW_RESULTS false
 
+#define USE_NEAREST_CONTOUR_FG true
+
 // Some parameters to prevent program from using more RAM than available:
 #define ALLOW_SIMPLER_MESHES false // For meshes in RBOT paper, set to "false"
 #define NUM_HIST_BINS 8 // Default, for RBOT paper, is 32
@@ -235,7 +237,7 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     }
     
     // create the pose estimator
-    PoseEstimator6D* poseEstimator = new PoseEstimator6D(width, height, zNear, zFar, K, distCoeffs, objects);
+    PoseEstimator6D* poseEstimator = new PoseEstimator6D(width, height, zNear, zFar, K, distCoeffs, objects, USE_NEAREST_CONTOUR_FG);
     
     // move the OpenGL context for offscreen rendering to the current thread, if run in a seperate QT worker thread (unnessary in this example)
     //RenderingEngine::Instance()->getContext()->moveToThread(this);

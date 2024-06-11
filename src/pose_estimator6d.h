@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #ifndef POSE_ESTIMATOR6D_H
 #define POSE_ESTIMATOR6D_H
@@ -73,12 +74,13 @@ public:
      *  @param  K The intrinsic camera matrix.
      *  @param  distCoeffs The cameras lens distortion coefficients.
      *  @param  objects A collection of all 3D objects to be tracked.
+     *  @param useNearestContourFG use nearest-contour pixels for both FG & BG calcs.
      *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
      *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
      */
     PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K,
     const cv::Matx14f &distCoeffs, std::vector<Object3D*> &objects,
-    float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
+    bool useNearestContourFG, float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
     
     ~PoseEstimator6D();
     

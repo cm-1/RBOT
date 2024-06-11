@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with RBOT. If not, see <http://www.gnu.org/licenses/>.
  */
+// Modified by Christopher Mossman to test effect of varying certain params.
 
 #include "optimization_engine.h"
 
@@ -39,8 +40,9 @@ using namespace std;
 using namespace cv;
 
 
-OptimizationEngine::OptimizationEngine(int width, int height, float tikhonovRotParam, float tikhonovTransParam)
-: tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
+OptimizationEngine::OptimizationEngine(int width, int height, bool useNearestContourForFG, float tikhonovRotParam, float tikhonovTransParam)
+: useNearestContourFG(useNearestContourForFG)
+, tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
 {
     renderingEngine = RenderingEngine::Instance();
     
@@ -197,7 +199,7 @@ void OptimizationEngine::parallel_computeJacobians(Object3D* object, const Mat& 
     vector<Matx61f> JTCollection(threads);
     vector<Matx66f> wJTJCollection(threads);
     
-    parallel_for_(cv::Range(0, threads), Parallel_For_computeJacobiansGN(object->getTCLCHistograms(), frame, sdt, xyPos, depth, depthInv, K, zNear, zFar, roi, mask, m_id, level, wJTJCollection, JTCollection, threads));
+    parallel_for_(cv::Range(0, threads), Parallel_For_computeJacobiansGN(object->getTCLCHistograms(), frame, sdt, xyPos, depth, depthInv, K, zNear, zFar, roi, mask, m_id, level, wJTJCollection, JTCollection, useNearestContourFG, threads));
     
     for(int i = 0; i < threads; i++)
     {
