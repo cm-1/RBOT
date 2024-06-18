@@ -172,6 +172,101 @@ std::string FrameLongNum(int frameNum)
     return retStr;
 }
 
+void printValForConfig(const EvalConfig& config, std::string val)
+{
+    std::string modString = "";
+    if (config.modelOcclusions)
+        modString = config.useSimplifiedMesh ? " (modeled (SIMPLIFIED))" : " (modeled)";
+    std::string simpleString = config.useSimplifiedMesh ? " (SIMPLIFIED)" : "";
+    std::string binsString = (NUM_HIST_BINS != 32) ? " (" + std::to_string(NUM_HIST_BINS) + "-bins)" : "";
+    std::cout << config.seqName << modString << " - "
+        << config.bodName << simpleString << binsString << ": " << val << std::endl;
+
+}
+
+// Returns results in MB.
+long long int findRequiredRAM(const EvalConfig& run_configuration, int numBinsPerChannel)
+{
+    // load 3D objects
+    vector<Model*> objects;
+
+    QString bodStrQt = QString::fromStdString(run_configuration.bodName);
+    QString seqStrQt = QString::fromStdString(run_configuration.seqName);
+
+    std::string objPath;
+
+    if (run_configuration.useSimplifiedMesh)
+    {
+        QString localObjPath = bodStrQt + "_low_res.obj";
+        QString fullObjPath = simplifiedMeshDir.filePath(localObjPath);
+        objPath = fullObjPath.toStdString();
+        if (!QFile::exists(fullObjPath))
+        {
+            std::cerr << "Error! Could not find file: " << objPath << std::endl;
+            return -1.f;
+        }
+    }
+    else
+    {
+        QString localObjPath = bodStrQt + "/" + bodStrQt + ".obj";
+        objPath = datasetDir.filePath(localObjPath).toStdString();
+    }
+
+
+    objects.push_back(new Model(objPath, 15, -35, 515, 55, -20, 205, 1.0));
+    //objects.push_back(new Object3D("data/a_second_model.obj", -50, 0, 600, 30, 0, 180, 1.0, 0.55f, distances2));
+
+    if (run_configuration.modelOcclusions)
+    {
+        std::string squirrelPath = datasetDir.filePath("squirrel_small.obj").toStdString();
+        if (run_configuration.useSimplifiedMesh)
+            squirrelPath = simplifiedMeshDir.filePath("squirrel_small_verylow_res.obj").toStdString();
+
+
+        objects.push_back(new Model(squirrelPath, 15, -35, 515, 55, -20, 205, 1.0));
+    }
+
+    long long int ramCount = 0;
+    for(Model* o: objects)
+    {
+        // IMPORTANT: Even though the final result, after division, will not
+        // require the long long size, and these individual variables by
+        // themselves also do not require that many bits, intermediate
+        // calculations do. Therefore, at least one of these must be long long,
+        // in the same way that at least one value must be a float when you
+        // want a float result from division.
+        long long int numVerts = o->getNumVertices();
+        long long int numBinsTotal = numBinsPerChannel * numBinsPerChannel * numBinsPerChannel;
+
+        // There are four separate histograms and four bytes per bin.
+        ramCount += (numVerts * 4 * 4 * numBinsTotal) / (1024*1024);
+    }
+
+    return ramCount;
+}
+
+
+
+void reportRequirementsForRAM(const std::vector<EvalConfig>& evalConfigs)
+{
+
+    long long int maxRAM = 0;
+    int indexForMax = 0;
+    for (int i = 0; i < int(evalConfigs.size()); ++i) {
+        long long int currentRAM = findRequiredRAM(evalConfigs[i], NUM_HIST_BINS);
+        if (currentRAM > maxRAM)
+        {
+            maxRAM = currentRAM;
+            indexForMax = i;
+        }
+        printValForConfig(evalConfigs[i], std::to_string(currentRAM));
+    }
+
+    std::cout << "MAX RAM: " <<std::endl;
+    printValForConfig(evalConfigs[indexForMax], std::to_string(maxRAM));
+
+}
+
 // Evaluate a single object for a single type of scene.
 // Returns the pose success ratio (or -1.f if an .obj file is not found).
 float EvalSingleConfig(const EvalConfig& run_configuration)
@@ -380,13 +475,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < int(evalConfigs.size()); ++i) {
         float avgSuccess = EvalSingleConfig(evalConfigs[i]);
-        std::string modString = "";
-        if (evalConfigs[i].modelOcclusions)
-            modString = evalConfigs[i].useSimplifiedMesh ? " (modeled (SIMPLIFIED))" : " (modeled)";
-        std::string simpleString = evalConfigs[i].useSimplifiedMesh ? " (SIMPLIFIED)" : "";
-        std::string binsString = (NUM_HIST_BINS != 32) ? " (" + std::to_string(NUM_HIST_BINS) + "-bins)" : "";
-        std::cout << evalConfigs[i].seqName << modString << " - "
-            << evalConfigs[i].bodName << simpleString << binsString << ": " << avgSuccess << std::endl;
+        printValForConfig(evalConfigs[i], std::to_string(avgSuccess));
     }
 
 

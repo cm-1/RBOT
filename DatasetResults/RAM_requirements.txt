@@ -1,0 +1,40 @@
+For 32 bins and no mesh simplification:
+
+d_occlusion - ape: 17517
+d_occlusion - bakingsoda: 324
+d_occlusion - benchviseblue: 91980
+d_occlusion - broccolisoup: 356
+d_occlusion - cam: 56979
+d_occlusion - can: 68499
+d_occlusion - cat: 47202
+d_occlusion - clown: 423
+d_occlusion - cube: 12
+d_occlusion - driller: 37959
+d_occlusion - duck: 23730
+d_occlusion - eggbox: 55413
+d_occlusion - glue: 22431
+d_occlusion - iron: 54648
+d_occlusion - koalacandy: 311
+d_occlusion - lamp: 73497
+d_occlusion - phone: 49671
+d_occlusion - squirrel: 17194
+d_occlusion (modeled) - ape: 34711
+d_occlusion (modeled) - bakingsoda: 17518
+d_occlusion (modeled) - benchviseblue: 109174
+d_occlusion (modeled) - broccolisoup: 17550
+d_occlusion (modeled) - cam: 74173
+d_occlusion (modeled) - can: 85693
+d_occlusion (modeled) - cat: 64396
+d_occlusion (modeled) - clown: 17617
+d_occlusion (modeled) - cube: 17206
+d_occlusion (modeled) - driller: 55153
+d_occlusion (modeled) - duck: 40924
+d_occlusion (modeled) - eggbox: 72607
+d_occlusion (modeled) - glue: 39625
+d_occlusion (modeled) - iron: 71842
+d_occlusion (modeled) - koalacandy: 17505
+d_occlusion (modeled) - lamp: 90691
+d_occlusion (modeled) - phone: 66865
+d_occlusion (modeled) - squirrel: 34388
+MAX RAM: 
+d_occlusion (modeled) - benchviseblue: 109174
