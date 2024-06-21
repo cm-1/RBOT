@@ -39,13 +39,14 @@ This originally led me to believe that the model could be visualized as follows,
 
 Below are some images that showcase such an interpretation for an initial rough pose, both from the camera's angle as well as from a "side" 3D angle to better see how pixel coordinates would move in 3D as the 6D pose changes. The black, green, and blue contour lines represent the SDT for the rough pose, and for two of the images, I've set all of the **true** BG pixels to white to clear up visual clutter and to showcase that the pose isn't perfect. 
 
-![placeholder](./BlenderVisRBOT/renders/01-InitialPose.png)
-![placeholder](./BlenderVisRBOT/renders/02-PixelDots.png)
-![placeholder](./BlenderVisRBOT/renders/03-FG-Only.png)
+![Image of untextured mesh superimposed over a camera frame with a rough initial pose.](./BlenderVisRBOT/renders/01-InitialPose.png)
+![Small spheres are now placed on the mesh where the camera rays through pixels would hit the mesh (or where they would hit a 3D "fin" extending outwards from the object's silhouette). The spheres are coloured based on the camera frame's respective pixels](./BlenderVisRBOT/renders/02-PixelDots.png)
+![The previous image is now modified so that true background pixel-spheres are set to white.](./BlenderVisRBOT/renders/03-FG-Only.png)
 
 Side views:
-![placeholder](./BlenderVisRBOT/renders/Side-02-PixelDots.png)
-![placeholder](./BlenderVisRBOT/renders/Side-03-FG-Only.png)
+
+![Side-view of image 2 of 3 from the above, so that the 3D positions of the spheres is easier to visualize.](./BlenderVisRBOT/renders/Side-02-PixelDots.png)
+![Same as the above but for image 3 of 3](./BlenderVisRBOT/renders/Side-03-FG-Only.png)
 
 <!--
 ![placeholder](./BlenderVisRBOT/renders/04-FirstIteration.png)
@@ -61,7 +62,7 @@ Then the idea with the above visualization would be to try to move the squirrel,
 
 But a simple translation example makes this idea seem nonsensical. Consider the following initial pose, off by just translation and not rotation, and its segmentation of the camera frame:
 
-![placeholder](./BlenderVisRBOT/renders/squirrelShiftFront.png)
+![Image where the signed distance transform texture is used to segment the camera frame into foreground and background. The pose is visibly off by a translation "inside" the camera's viewing plane.](./BlenderVisRBOT/renders/squirrelShiftFront.png)
 <!--![placeholder](./BlenderVisRBOT/renders/squirrelShiftSide.png)-->
 
 Here, we obviously need to shift our initial pose (represented by the contour) to the right in order to line up with the squirrel. But if we take the former interpretation and imagine we need to move the pixels in order to match the SDT contour, we'd move our initial guess to the left, which is in the opposite direction.
@@ -82,6 +83,7 @@ for some positive value of s (in their code, s = 1.2).
 
 This means that this dirac delta function is always positive even though the derivative of $H_e$ should be negative. Recreation of a graph from the primary RBOT author's dissertation:
 
+![Recreation of graph of negative-sloped smoothed step function and Dirac delta from Tjaden's PhD thesis (page 124). The Dirac delta is always nonnegative despite the smoothed step function's negative slope.](./BlenderVisRBOT/heavisideGraph/heavisideGraph.png)
 
 As for whether this negative sign was simply moved somewhere else, it does not appear to be in the "outer" derivative of the -log(...), which features the exact signs I would expect. Plus, this "extra" negation would line up with the simple translation example above, where we want to move our initial pose to the right, not left. But then the question is how to intuitively/physically interpret how/why the algorithm works. Is it to maximize​ the discrepancy between the current SDT and repositioned pixels? While that aligns with the negation part, it's not very intuitive, so I think the following, alternate explanation is better. We'll assume that $\partial \Phi /\partial \mathbf{x}$, currently given as:
 

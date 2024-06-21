@@ -1,3 +1,2 @@
     - Finish better description of "single-point" model.
-    - Recreate and include the H & delta graph from Tjaden's dissertation.
       
