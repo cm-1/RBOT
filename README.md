@@ -1,6 +1,8 @@
 # Background Behind This Fork
 Right now, this fork is primarily for making small changes to the code in a way that lets me share public links to commits. The plan currently is to have separate branches for each small functionality change.
 
+**There is a branch list below, but it won't always be up-to-date, especially on the non-master branches! The master branch will have the most up-to-date list!**
+
 I am also making more substantial changes to the original RBOT code as part of my MSc research (getting the code to run on a phone, working to improve the fps, working on some specific applications using this code, etc.), but am not quite ready to publicly share most of these changes yet. Said changes may eventually come to this repo or another one.
 
 Current branches of interest:
@@ -10,7 +12,8 @@ Current branches of interest:
    * It may be worth noting that, because the evaluation closely follows SRT3D's, the evaluation code structure somewhat mirrors how SRT3D's RBOT evaluator C++ code looks, though I've minimized things to the bare essentials.
  * `cmakeChanges`: a branch to showcase the changes I made to get the CMakeLists.txt provided by RBOT working on Windows 10.
  * `simpleAndroid`: a branch to showcase the changes I made to get RBOT running on Android as a Qt project. The ideal would be to work on something that can be used outside of Qt, e.g., to use with the Unity game engine, but this branch probably won't cover that.
-
+ * `ignoreThisBranch_BlenderVisWIP`: Branch that was initially used to create a Blender visualization, and then when that "failed" for reasons described in that branch, was instead used to document why that was the case.
+ 
 The README files have also been fixed to use the updated RBOT dataset download link, since the original leads to a 403 error right now.
 
 **Below is the original README (except for the fixed download link) from the original RBOT repo:**

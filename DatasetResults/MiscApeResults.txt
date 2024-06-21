@@ -1,0 +1,12 @@
+
+d_occlusion - ape (SIMPLIFIED): 0.809
+
+d_occlusion (modeled (SIMPLIFIED)) - ape (SIMPLIFIED): 0.684
+
+d_occlusion - ape (8-bins): 0.78
+
+d_occlusion (modeled) - ape (8-bins): 0.801
+
+d_occlusion - ape (16-bins): 0.803
+
+d_occlusion (modeled) - ape (16-bins): 0.818
