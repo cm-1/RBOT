@@ -4,22 +4,18 @@ Python code on them to generate a visualization for how I _thought_ RBOT
 treated pose error. 
 
 In generating the visualization, however, I noticed an example didn't make sense,
-and found what might be a sign "error" in the original RBOT paper's statement of
-the error derivative; I put "error" in quotes because the code obviously works,
-and there is an interpretation of what the code is doing where it makes sense.
-Basically, the RBOT paper omits a negative sign from the derivative of the
+and found that the RBOT paper's statement of the error derivative is missing (at least, from my perspective) two negative signs that cancel each other out to yield the same result, but that have an impact on a "step-by-step" visualization of the error derivative as the output of successive chain rule applications.
+
+Basically, the RBOT paper seemingly omits a negative sign from the derivative of the
 negative-sloped smoothed Heaviside function that they use. BUT, this is compensated
 for by the fact that, when this omission is undone by adding a negative sign to
 the derivative of the SDT texture (so that we consider the texture to be moving
 when the pose changes and the pixel staying fixed in space, rather than vice versa),
-then you actually arrive at a more sensible interpretation of pose error and its
+then you actually arrive at what I think is a sensible interpretation of pose error and its
 derivative, though one that the original paper does not seem to state explicitly
-(or, if I misinterpreted, then at least is plagued by these sign typos).
+(or, if I misinterpreted, then at very least I think adding these two "missing" negative signs would make it clearer).
 
-If the above description seems a bit rough/confusing... yes, I need to devote
-a bit more time to writing down a better explanation, preferably with some
-math typsetting and some diagrams. But there's no time at the present, so this
-commit will have to do for now.
+If the above description seems a bit rough/confusing, there is a _much_ longer description in the "ErrorDerivativesSignDistribution.md" document in this branch that explains it in more depth, using math typesetting, etc.
 
 # Background Behind This Fork
 Right now, this fork is primarily for making small changes to the code in a way that lets me share public links to commits. The plan currently is to have separate branches for each small functionality change.
