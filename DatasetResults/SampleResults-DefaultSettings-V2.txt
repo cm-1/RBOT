@@ -1,153 +1,73 @@
-
-
 a_regular - ape (SIMPLIFIED): 0.864
-
 a_regular - bakingsoda: 0.446
-
 a_regular - benchviseblue (SIMPLIFIED): 0.985
-
 a_regular - broccolisoup: 0.84
-
 a_regular - cam (SIMPLIFIED): 0.88
-
 a_regular - can (SIMPLIFIED): 0.89
-
 a_regular - cat (SIMPLIFIED): 0.958
-
 a_regular - clown: 0.927
-
 a_regular - cube: 0.78
-
 a_regular - driller (SIMPLIFIED): 0.948
-
 a_regular - duck (SIMPLIFIED): 0.872
-
 a_regular - eggbox (SIMPLIFIED): 0.824
-
 a_regular - glue (SIMPLIFIED): 0.573
-
 a_regular - iron (SIMPLIFIED): 0.874
-
 a_regular - koalacandy: 0.552
-
 a_regular - lamp (SIMPLIFIED): 0.963
-
 a_regular - phone (SIMPLIFIED): 0.859
-
 a_regular - squirrel (SIMPLIFIED): 0.992
-
 b_dynamiclight - ape (SIMPLIFIED): 0.857
-
 b_dynamiclight - bakingsoda: 0.468
-
 b_dynamiclight - benchviseblue (SIMPLIFIED): 0.982
-
 b_dynamiclight - broccolisoup: 0.831
-
 b_dynamiclight - cam (SIMPLIFIED): 0.885
-
 b_dynamiclight - can (SIMPLIFIED): 0.882
-
 b_dynamiclight - cat (SIMPLIFIED): 0.955
-
 b_dynamiclight - clown: 0.922
-
 b_dynamiclight - cube: 0.765
-
 b_dynamiclight - driller (SIMPLIFIED): 0.952
-
 b_dynamiclight - duck (SIMPLIFIED): 0.875
-
 b_dynamiclight - eggbox (SIMPLIFIED): 0.808
-
 b_dynamiclight - glue (SIMPLIFIED): 0.584
-
 b_dynamiclight - iron (SIMPLIFIED): 0.816
-
 b_dynamiclight - koalacandy: 0.545
-
 b_dynamiclight - lamp (SIMPLIFIED): 0.952
-
 b_dynamiclight - phone (SIMPLIFIED): 0.856
-
 b_dynamiclight - squirrel (SIMPLIFIED): 0.994
-
 c_noisy - ape (SIMPLIFIED): 0.822
-
 c_noisy - bakingsoda: 0.454
-
 c_noisy - benchviseblue (SIMPLIFIED): 0.93
-
 c_noisy - broccolisoup: 0.825
-
 c_noisy - cam (SIMPLIFIED): 0.677
-
 c_noisy - can (SIMPLIFIED): 0.678
-
 c_noisy - cat (SIMPLIFIED): 0.939
-
 c_noisy - clown: 0.768
-
 c_noisy - cube: 0.354
-
 c_noisy - driller (SIMPLIFIED): 0.858
-
 c_noisy - duck (SIMPLIFIED): 0.887
-
 c_noisy - eggbox (SIMPLIFIED): 0.435
-
 c_noisy - glue (SIMPLIFIED): 0.284
-
 c_noisy - iron (SIMPLIFIED): 0.704
-
 c_noisy - koalacandy: 0.45
-
 c_noisy - lamp (SIMPLIFIED): 0.757
-
 c_noisy - phone (SIMPLIFIED): 0.676
-
 c_noisy - squirrel (SIMPLIFIED): 0.981
-
 d_occlusion - ape (SIMPLIFIED): 0.809
-
 d_occlusion - bakingsoda: 0.434
-
 d_occlusion - benchviseblue (SIMPLIFIED): 0.93
-
 d_occlusion - broccolisoup: 0.763
-
 d_occlusion - cam (SIMPLIFIED): 0.807
-
 d_occlusion - can (SIMPLIFIED): 0.835
-
 d_occlusion - cat (SIMPLIFIED): 0.912
-
 d_occlusion - clown: 0.853
-
 d_occlusion - cube: 0.695
-
 d_occlusion - driller (SIMPLIFIED): 0.917
-
 d_occlusion - duck (SIMPLIFIED): 0.801
-
 d_occlusion - eggbox (SIMPLIFIED): 0.744
-
 d_occlusion - glue (SIMPLIFIED): 0.525
-
 d_occlusion - iron (SIMPLIFIED): 0.768
-
 d_occlusion - koalacandy: 0.51
-
 d_occlusion - lamp (SIMPLIFIED): 0.898
-
 d_occlusion - phone (SIMPLIFIED): 0.795
-
 d_occlusion - squirrel (SIMPLIFIED): 0.951
-
-
-d_occlusion (modeled (SIMPLIFIED)) - ape (SIMPLIFIED): 0.821
-
-
-d_occlusion (modeled) - bakingsoda: 0.436
-
 

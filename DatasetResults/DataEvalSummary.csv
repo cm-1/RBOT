@@ -1,21 +1,73 @@
-;FG Contour;Default;Perfect Motion Est
-a_regular - bakingsoda;0.445;0.446;0.835
-a_regular - broccolisoup;0.861;0.84;0.904
-a_regular - clown;0.921;0.927;0.989
-a_regular - cube;0.806;0.78;0.87
-a_regular - koalacandy;0.576;0.552;0.64
-b_dynamiclight - bakingsoda;0.446;0.468;0.825
-b_dynamiclight - broccolisoup;0.858;0.832;0.9
-b_dynamiclight - clown;0.92;0.923;0.983
-b_dynamiclight - cube;0.795;0.765;0.864
-b_dynamiclight - koalacandy;0.586;0.545;0.61
-c_noisy - bakingsoda;0.437;0.454;0.833
-c_noisy - broccolisoup;0.857;0.825;0.914
-c_noisy - clown;0.779;0.768;0.833
-c_noisy - cube;0.354;0.354;0.523
-c_noisy - koalacandy;0.474;0.45;0.538
-d_occlusion - bakingsoda;0.433;0.434;0.802
-d_occlusion - broccolisoup;0.778;0.763;0.837
-d_occlusion - clown;0.841;0.853;0.896
-d_occlusion - cube;0.727;0.695;0.799
-d_occlusion - koalacandy;0.555;0.51;0.576
+,FG Contour,Default,Perfect Motion Est,
+a_regular - ape (SIMPLIFIED):,0.865,0.864,,0.001
+a_regular - bakingsoda:,0.445,0.446,,-0.001
+a_regular - benchviseblue (SIMPLIFIED):,0.983,0.985,,-0.002
+a_regular - broccolisoup:,0.861,0.84,,0.021
+a_regular - cam (SIMPLIFIED):,0.884,0.88,,0.004
+a_regular - can (SIMPLIFIED):,0.88,0.89,,-0.01
+a_regular - cat (SIMPLIFIED):,0.956,0.958,,-0.002
+a_regular - clown:,0.921,0.927,,-0.00600000000000001
+a_regular - cube:,0.806,0.78,,0.026
+a_regular - driller (SIMPLIFIED):,0.945,0.948,,-0.003
+a_regular - duck (SIMPLIFIED):,0.889,0.872,,0.017
+a_regular - eggbox (SIMPLIFIED):,0.831,0.824,,0.00700000000000001
+a_regular - glue (SIMPLIFIED):,0.597,0.573,,0.024
+a_regular - iron (SIMPLIFIED):,0.894,0.874,,0.02
+a_regular - koalacandy:,0.576,0.552,,0.0239999999999999
+a_regular - lamp (SIMPLIFIED):,0.965,0.963,,0.002
+a_regular - phone (SIMPLIFIED):,0.864,0.859,,0.005
+a_regular - squirrel (SIMPLIFIED):,0.994,0.992,,0.002
+b_dynamiclight - ape (SIMPLIFIED):,0.869,0.857,,0.012
+b_dynamiclight - bakingsoda:,0.446,0.468,,-0.022
+b_dynamiclight - benchviseblue (SIMPLIFIED):,0.982,0.982,,0
+b_dynamiclight - broccolisoup:,0.858,0.831,,0.027
+b_dynamiclight - cam (SIMPLIFIED):,0.884,0.885,,-0.001
+b_dynamiclight - can (SIMPLIFIED):,0.881,0.882,,-0.001
+b_dynamiclight - cat (SIMPLIFIED):,0.953,0.955,,-0.002
+b_dynamiclight - clown:,0.92,0.922,,-0.002
+b_dynamiclight - cube:,0.795,0.765,,0.03
+b_dynamiclight - driller (SIMPLIFIED):,0.954,0.952,,0.002
+b_dynamiclight - duck (SIMPLIFIED):,0.887,0.875,,0.012
+b_dynamiclight - eggbox (SIMPLIFIED):,0.821,0.808,,0.0129999999999999
+b_dynamiclight - glue (SIMPLIFIED):,0.585,0.584,,0.001
+b_dynamiclight - iron (SIMPLIFIED):,0.828,0.816,,0.012
+b_dynamiclight - koalacandy:,0.586,0.545,,0.0409999999999999
+b_dynamiclight - lamp (SIMPLIFIED):,0.952,0.952,,0
+b_dynamiclight - phone (SIMPLIFIED):,0.859,0.856,,0.003
+b_dynamiclight - squirrel (SIMPLIFIED):,0.996,0.994,,0.002
+c_noisy - ape (SIMPLIFIED):,0.83,0.822,,0.00800000000000001
+c_noisy - bakingsoda:,0.437,0.454,,-0.017
+c_noisy - benchviseblue (SIMPLIFIED):,0.917,0.93,,-0.013
+c_noisy - broccolisoup:,0.857,0.825,,0.032
+c_noisy - cam (SIMPLIFIED):,0.682,0.677,,0.005
+c_noisy - can (SIMPLIFIED):,0.683,0.678,,0.005
+c_noisy - cat (SIMPLIFIED):,0.936,0.939,,-0.00299999999999989
+c_noisy - clown:,0.779,0.768,,0.011
+c_noisy - cube:,0.354,0.354,,0
+c_noisy - driller (SIMPLIFIED):,0.851,0.858,,-0.00700000000000001
+c_noisy - duck (SIMPLIFIED):,0.9,0.887,,0.013
+c_noisy - eggbox (SIMPLIFIED):,0.434,0.435,,-0.001
+c_noisy - glue (SIMPLIFIED):,0.278,0.284,,-0.00599999999999995
+c_noisy - iron (SIMPLIFIED):,0.712,0.704,,0.00800000000000001
+c_noisy - koalacandy:,0.474,0.45,,0.024
+c_noisy - lamp (SIMPLIFIED):,0.762,0.757,,0.005
+c_noisy - phone (SIMPLIFIED):,0.67,0.676,,-0.00600000000000001
+c_noisy - squirrel (SIMPLIFIED):,0.986,0.981,,0.005
+d_occlusion - ape (SIMPLIFIED):,0.822,0.809,,0.0129999999999999
+d_occlusion - bakingsoda:,0.433,0.434,,-0.001
+d_occlusion - benchviseblue (SIMPLIFIED):,0.937,0.93,,0.00700000000000001
+d_occlusion - broccolisoup:,0.778,0.763,,0.015
+d_occlusion - cam (SIMPLIFIED):,0.811,0.807,,0.004
+d_occlusion - can (SIMPLIFIED):,0.836,0.835,,0.001
+d_occlusion - cat (SIMPLIFIED):,0.905,0.912,,-0.00700000000000001
+d_occlusion - clown:,0.841,0.853,,-0.012
+d_occlusion - cube:,0.727,0.695,,0.032
+d_occlusion - driller (SIMPLIFIED):,0.913,0.917,,-0.004
+d_occlusion - duck (SIMPLIFIED):,0.811,0.801,,0.01
+d_occlusion - eggbox (SIMPLIFIED):,0.758,0.744,,0.014
+d_occlusion - glue (SIMPLIFIED):,0.538,0.525,,0.013
+d_occlusion - iron (SIMPLIFIED):,0.775,0.768,,0.00700000000000001
+d_occlusion - koalacandy:,0.555,0.51,,0.045
+d_occlusion - lamp (SIMPLIFIED):,0.893,0.898,,-0.005
+d_occlusion - phone (SIMPLIFIED):,0.799,0.795,,0.004
+d_occlusion - squirrel (SIMPLIFIED):,0.946,0.951,,-0.005

@@ -1,0 +1,270 @@
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - ape (8-bins): 0.834
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - bakingsoda (8-bins): 0.452
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - benchviseblue (8-bins): 0.968
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - broccolisoup (8-bins): 0.864
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - cam (8-bins): 0.754
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - can (8-bins): 0.774
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - cat (8-bins): 0.952
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - clown (8-bins): 0.864
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - cube (8-bins): 0.561
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - driller (8-bins): 0.854
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - duck (8-bins): 0.897
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - eggbox (8-bins): 0.563
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - glue (8-bins): 0.356
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - iron (8-bins): 0.813
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - koalacandy (8-bins): 0.546
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - lamp (8-bins): 0.902
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - phone (8-bins): 0.742
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+a_regular - squirrel (8-bins): 0.985
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - ape (8-bins): 0.826
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - bakingsoda (8-bins): 0.428
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - benchviseblue (8-bins): 0.943
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - broccolisoup (8-bins): 0.864
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - cam (8-bins): 0.778
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - can (8-bins): 0.749
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - cat (8-bins): 0.941
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - clown (8-bins): 0.833
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - cube (8-bins): 0.557
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - driller (8-bins): 0.894
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - duck (8-bins): 0.888
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - eggbox (8-bins): 0.556
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - glue (8-bins): 0.39
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - iron (8-bins): 0.759
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - koalacandy (8-bins): 0.554
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - lamp (8-bins): 0.833
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - phone (8-bins): 0.737
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+b_dynamiclight - squirrel (8-bins): 0.984
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - ape (8-bins): 0.803
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - bakingsoda (8-bins): 0.441
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - benchviseblue (8-bins): 0.9
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - broccolisoup (8-bins): 0.845
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - cam (8-bins): 0.645
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - can (8-bins): 0.632
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - cat (8-bins): 0.908
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - clown (8-bins): 0.731
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - cube (8-bins): 0.347
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - driller (8-bins): 0.826
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - duck (8-bins): 0.885
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - eggbox (8-bins): 0.399
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - glue (8-bins): 0.279
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - iron (8-bins): 0.71
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - koalacandy (8-bins): 0.496
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - lamp (8-bins): 0.743
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - phone (8-bins): 0.653
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+c_noisy - squirrel (8-bins): 0.967
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - ape (8-bins): 0.783
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - bakingsoda (8-bins): 0.413
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - benchviseblue (8-bins): 0.89
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - broccolisoup (8-bins): 0.799
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - cam (8-bins): 0.715
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - can (8-bins): 0.709
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - cat (8-bins): 0.904
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - clown (8-bins): 0.769
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - cube (8-bins): 0.517
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - driller (8-bins): 0.853
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - duck (8-bins): 0.835
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - eggbox (8-bins): 0.507
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - glue (8-bins): 0.371
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - iron (8-bins): 0.727
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - koalacandy (8-bins): 0.507
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - lamp (8-bins): 0.793
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - phone (8-bins): 0.687
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion - squirrel (8-bins): 0.929
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - ape (8-bins): 0.8
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - bakingsoda (8-bins): 0.415
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - benchviseblue (8-bins): 0.898
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - broccolisoup (8-bins): 0.829
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - cam (8-bins): 0.726
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - can (8-bins): 0.697
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - cat (8-bins): 0.911
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - clown (8-bins): 0.781
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - cube (8-bins): 0.541
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - driller (8-bins): 0.87
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - duck (8-bins): 0.862
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - eggbox (8-bins): 0.528
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - glue (8-bins): 0.369
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - iron (8-bins): 0.733
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - koalacandy (8-bins): 0.545
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - lamp (8-bins): 0.792
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - phone (8-bins): 0.703
+GL Version 3.3.0 NVIDIA 516.94
+GLSL Version 3.30 NVIDIA via Cg compiler
+d_occlusion (modeled) - squirrel (8-bins): 0.951
