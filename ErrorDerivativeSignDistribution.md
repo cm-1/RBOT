@@ -85,20 +85,41 @@ This means that this dirac delta function is always positive even though the der
 
 ![Recreation of graph of negative-sloped smoothed step function and Dirac delta from Tjaden's PhD thesis (page 124). The Dirac delta is always nonnegative despite the smoothed step function's negative slope.](./BlenderVisRBOT/heavisideGraph/heavisideGraph.png)
 
-As for whether this negative sign was simply moved somewhere else, it does not appear to be in the "outer" derivative of the -log(...), which features the exact signs I would expect. Plus, this "extra" negation would line up with the simple translation example above, where we want to move our initial pose to the right, not left. But then the question is how to intuitively/physically interpret how/why the algorithm works. Is it to maximize​ the discrepancy between the current SDT and repositioned pixels? While that aligns with the negation part, it's not very intuitive, so I think the following, alternate explanation is better. We'll assume that $\partial \Phi /\partial \mathbf{x}$, currently given as:
+As for whether this negative sign was simply moved somewhere else, it does not appear to be in the "outer" derivative of the -log(...), which features the exact signs I would expect. Plus, this "extra" negation would line up with the simple translation example above, where we want to move our initial pose to the right, not left. But then the question is how to intuitively/physically interpret how/why the algorithm works. Is it to maximize​ the discrepancy between the current SDT and repositioned pixels? While that aligns with the negation part, it's not very intuitive, so I think the following, alternate explanation is better.
 
+I believe that the true value of $\frac{\partial \Phi}{\partial \xi}$ should be the negation of what the authors write, and that its missing negative sign would balance out the other one that we just described as missing.
+The physical/intuitive interpretation of how the algorithm works, at least for BG pixels, is as follows. We will just work with BG pixels for now to simplify some things (e.g., so that "signed distance" from the contour can be assumed to be positive, making it just "distance") and because the interpretation seems a bit more "sensible" for BG pixels; for FG pixels, because they use the 3D point "under" the current pixel rather than the 3D point "at" the nearest contour pixel for calculations, there are some parts that I cannot fully incorporate into this interpretation, nor do I have a better alternative one yet.
+
+The RBOT paper represents $\mathbf{x}$ as a function $\mathbf{x}(\xi)$ of $\xi$, so that $\partial\mathbf{x} / \partial \xi$ is not 0 in general, and so that:
 
 $$
-\left[\frac{\partial\Phi(\mathbf{x})}{\partial x}, \frac{\partial\Phi(\mathbf{x})}{\partial y}\right] = \begin{bmatrix} \nabla_x \Phi \\ \nabla_y \Phi \end{bmatrix}^T = \frac{1}{2} \begin{bmatrix} \Phi(x + 1, y) - \Phi(x - 1, y) \\ \Phi(x, y + 1) - \Phi(x, y - 1) \end{bmatrix}^T
+\frac{\partial\Phi}{\partial \xi} = \frac{\partial \Phi}{\partial \mathbf{x}} \frac{\partial \mathbf{x}}{\partial \xi}
 $$
 
-should in fact be the negation of what the authors write, and do what they say is $\partial \Phi /\partial \mathbf{x}$ is in fact $-\partial \Phi /\partial \mathbf{x}$, and so the missing negative sign is thus recovered. The physical/intuitive interpretation of how the algorithm works, at least for BG pixels, is as follows:
+However, I find it more intuitive to view $\mathbf{x}$ as constant, so that, not only do they not change colour (as in the previous, flawed interpretation) but they also do not change position in 2D/3D space either. Then we'd have $\partial \mathbf{x} / \partial \xi = 0$, and so that $\partial \Phi / \partial \xi \neq 0$, we'll instead represent $\Phi$ as a function of both $\mathbf{x}$ and $\xi$, i.e., $\Phi(\mathbf{x}, \xi)$. We'll also introduce a new function, $n(\mathbf{x}, \xi)$, which outputs the 2D coordinates of the nearest pixel to $\mathbf{x}$ on the silhouette contour for the pose $\xi$.
+Lastly, we'll use angle brackets to denote normalization; that is, for a vector $\mathbf{v}$, we'll denote $\langle \mathbf{v} \rangle = \mathbf{v} / \lVert \mathbf{v} \rVert$. 
 
-- As before, pixels at location $\mathbf{x}$ do not change colour, but unlike before, coloured pixels will be considered stationary in 2D/3D space. Nonetheless, we will "note" which 3D location on the object surface corresponds to this pixel; let's call this 3D position "n(x)", its projection "$q_{2D}$" and the colour pixel for which we're calculating the derivative "p".
-- As the squirrel moves, q's 2D projected position will change by a "$\Delta q_{2D}$" amount. 
-- For p, we assume that the new SDT is just the old SDT shifted by this "$\Delta q_{2D}$" amount.
+Then, we can say that:
+$$
+\begin{aligned}
+\Phi(\mathbf{x}, \xi)
+    &= \lVert n(\mathbf{x}, \xi) - \mathbf{x} \rVert \\
+    &= \sqrt{ (n_x(\mathbf{x}, \xi) - x)^2 + (n_y(\mathbf{x}, \xi) - y)^2} \\
+\frac{\partial \Phi(\mathbf{x}, \xi)}{\partial \xi}
+    &= \frac{\frac{\partial}{\partial \xi} \left((n_x(\mathbf{x}, \xi) - x)^2 + (n_y(\mathbf{x}, \xi) - y)^2\right)}{2\lVert n(\mathbf{x}, \xi) - \mathbf{x} \rVert}\\
+    &= \frac{2((n_x(\mathbf{x}, \xi) - x)\frac{\partial n_x}{\partial \xi} + (n_y(\mathbf{x}, \xi) - y)\frac{\partial n_y}{\partial \xi} )}{2\lVert n(\mathbf{x}, \xi) - \mathbf{x} \rVert}\\
+    &= \frac{(n(\mathbf{x}, \xi) - \mathbf{x})^T \, \frac{\partial n(\mathbf{x}, \xi)}{\partial \xi}}{\lVert n(\mathbf{x}, \xi) - \mathbf{x} \rVert}\\
+    &= \langle \,n(\mathbf{x}, \xi) - \mathbf{x}\,\rangle^T\, \frac{\partial n(\mathbf{x}, \xi)}{\partial \xi}
+\end{aligned}
+$$
 
-The interpretation for FG pixels is a bit less clear, since they assume the nearest point would move by the same amount as the 3D point hit by a ray through the current pixel, and I'm not sure when that would be more accurate than just using the same model as the BG... but nonetheless, even just having the intuition for the BG might help.
+Assuming that a unique $n(\mathbf{x}, \xi)$ exists for $\mathbf{x}$, then $\frac{\partial \Phi}{\partial \mathbf{x}} = \nabla \Phi = \langle \,\mathbf{x} - n(\mathbf{x}, \xi) \,\rangle = -\langle \,n(\mathbf{x}, \xi) - \mathbf{x}\,\rangle$, meaning that the finite-difference-calculated $\frac{\partial \Phi(\mathbf{x})}{\partial \mathbf{x}}$ calculated in the RBOT paper is essentially the same as $-\langle \,n(\mathbf{x}, \xi) - \mathbf{x}\,\rangle$, which takes care of balancing out the other missing sign. And if you read through the RBOT code (in the `operator()` method of the `Parallel_For_computeJacobiansGN` class in `optimization_engine.h`), then you can see that what the RBOT paper reports as $\frac{\partial \mathbf{x}}{\partial \xi}$ (which they represent by the equivalent $\frac{\partial \pi}{\partial \xi}$, with $\pi$ being the projection function taking 3D points to 2D) is _actually_ just $\frac{\partial n}{\partial \xi}$ for BG pixels _so long as_ the following assumption is made.
+
+The assumption is that WHICH 3D point on the model's surface becomes the nearest contour 2D point (under projection) to the (static) pixel $\mathbf{x}$ won't change, but that WHERE said 3D point is will change. 
+
+Viewed another way: it's like each pixel gets its own 1-point, radial SDT that it cares about. Or: it's like each pixel gets its own 1-vertex mesh that it is using to approximate the SDT derivatives.
+
+Now, the interpretation for FG pixels is a bit less clear, since they assume the nearest point would move by the same amount as the 3D point hit by a ray through the current pixel, and I'm not sure when that would be more accurate than just using the same model as the BG... but nonetheless, even just having the intuition for the BG might help.
 
 I _think_ my above interpretation/intuition is fairly decent, but maybe there's a better one; the authors never (as far as I can tell) clearly state that the above is being done, and further, the seemingly-mismatched sign stuff obscures such an interpretation.
 
