@@ -62,11 +62,17 @@ public:
      *  @param width  The width in pixels of the camera frame at full resolution.
      *  @param height  The height in pixels of the camera frame at full resolution.
      *  @param useNearestContourForFG  Use nearest-contour pixels for both BG and FG calcs.
+     *  @param a_h Value for SRT3D smoothing function.
+     *  @param s_h Value for SRT3D smoothing function. Should be nonzero!
      *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
      *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
      * 
      */
-    OptimizationEngine(int width, int height, bool useNearestContourForFG, float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
+    OptimizationEngine(
+        int width, int height, bool useNearestContourForFG,
+        float a_h = 0.f, float s_h = 1.f,
+        float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f
+    );
     
     ~OptimizationEngine();
     
@@ -96,6 +102,10 @@ private:
     int height;
 
     bool useNearestContourFG;
+
+    // Parameters for SRT3D version of heaviside function.
+    float a_h;
+    float s_h;
 
     // Parameters for Tikhonov regularization.
     float tikhonovRotParam;
@@ -146,9 +156,18 @@ private:
     cv::Matx61f *_JTCollection;
     
     int _threads;
+
+    float ah;
+    float sh;
     
 public:
-    Parallel_For_computeJacobiansGN(TCLCHistograms *tclcHistograms, const cv::Mat &frame, const cv::Mat &sdt, const cv::Mat &xyPos, const cv::Mat &depth, const cv::Mat &depthInv, const cv::Matx33f &K, float zNear, float zFar, const cv::Rect &roi, const cv::Mat &mask, int m_id, int level, std::vector<cv::Matx66f> &wJTJCollection, std::vector<cv::Matx61f> &JTCollection, bool useNearestContourFG, int threads)
+    Parallel_For_computeJacobiansGN(TCLCHistograms *tclcHistograms, 
+        const cv::Mat &frame, const cv::Mat &sdt, const cv::Mat &xyPos,
+        const cv::Mat &depth, const cv::Mat &depthInv, const cv::Matx33f &K,
+        float zNear, float zFar, const cv::Rect &roi, const cv::Mat &mask,
+        int m_id, int level, std::vector<cv::Matx66f> &wJTJCollection,
+        std::vector<cv::Matx61f> &JTCollection, bool useNearestContourFG,
+        float ah_val, float sh_val, int threads)
     {
         frameData = frame.data;
         
@@ -208,6 +227,21 @@ public:
         _JTCollection = JTCollection.data();
         
         _threads = threads;
+
+        ah = ah_val;
+        sh = sh_val;
+    }
+
+    float srt3d_heaviside(float x) const
+    {
+        return 0.5f - ah * tanhf(x / (2.f * sh));
+    }
+
+    float srt3d_dirac(float x) const
+    {
+        float denom = 2.f * sh;
+        float th = tanhf(x / denom);
+        return -ah * (1.f - th*th) / denom;
     }
     
     bool isOccluded (int idx, float dist, float d) const
@@ -311,10 +345,16 @@ public:
                 if(fabs(dist) <= 8.0f)
                 {
                     // the smoothed Heaviside value for this signed distance
-                    float heaviside = 1.0f/float(CV_PI)*(-atan(dist*s)) + 0.5f;
+                    float heaviside;
+                    if (ah > 0) heaviside = srt3d_heaviside(dist);
+                    else heaviside = 1.0f/float(CV_PI)*(-atan(dist*s)) + 0.5f;
                     
                     // the corresponding smoothed dirac delta value
-                    float dirac = (1.0f / float(CV_PI)) * (s/(dist*s2*dist + 1.0f));
+                    float dirac;
+                    if (ah > 0)
+                        dirac = -srt3d_dirac(dist); // Make sure to negate!!!
+                    else
+                        dirac = (1.f / float(CV_PI)) * (s/(dist*s2*dist + 1.f));
                     
                     // compute the average foreground and background posterior
                     // probablities from the given set of tclc-histograms

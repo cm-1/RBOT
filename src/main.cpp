@@ -59,6 +59,14 @@ using namespace cv;
 
 #define USE_NEAREST_CONTOUR_FG true
 
+// SRT3D paper says that a=0.36f and s=0.001f performed best on RBOT dataset.
+// Currently not the case when I try it (though I still have more work to do).
+// Instead, I get best results right now with a=0.5f, s=0.7f.
+// If you graph this version of the heaviside alongside RBOT's, then they look
+// pretty similar, which would explain the performance similarity.
+#define SRT3D_A_H 0.5f // Set to zero to use original RBOT heaviside function.
+#define SRT3D_S_H 0.7f // This should always be nonzero!
+
 // Some parameters to prevent program from using more RAM than available:
 #define ALLOW_SIMPLER_MESHES false // For meshes in RBOT paper, set to "false"
 #define NUM_HIST_BINS 8 // Default, for RBOT paper, is 32
@@ -332,7 +340,10 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     }
     
     // create the pose estimator
-    PoseEstimator6D* poseEstimator = new PoseEstimator6D(width, height, zNear, zFar, K, distCoeffs, objects, USE_NEAREST_CONTOUR_FG);
+    PoseEstimator6D* poseEstimator = new PoseEstimator6D(
+        width, height, zNear, zFar, K, distCoeffs, objects, 
+        USE_NEAREST_CONTOUR_FG, SRT3D_A_H, SRT3D_S_H
+    );
     
     // move the OpenGL context for offscreen rendering to the current thread, if run in a seperate QT worker thread (unnessary in this example)
     //RenderingEngine::Instance()->getContext()->moveToThread(this);
