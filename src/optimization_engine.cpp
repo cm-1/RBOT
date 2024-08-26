@@ -40,9 +40,12 @@ using namespace std;
 using namespace cv;
 
 
-OptimizationEngine::OptimizationEngine(int width, int height, bool useNearestContourForFG, float tikhonovRotParam, float tikhonovTransParam)
+OptimizationEngine::OptimizationEngine(
+    int width, int height, bool useNearestContourForFG, float a_h, float s_h,
+    float tikhonovRotParam, float tikhonovTransParam)
 : useNearestContourFG(useNearestContourForFG)
 , tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
+, a_h(a_h), s_h(s_h)
 {
     renderingEngine = RenderingEngine::Instance();
     
@@ -199,7 +202,10 @@ void OptimizationEngine::parallel_computeJacobians(Object3D* object, const Mat& 
     vector<Matx61f> JTCollection(threads);
     vector<Matx66f> wJTJCollection(threads);
     
-    parallel_for_(cv::Range(0, threads), Parallel_For_computeJacobiansGN(object->getTCLCHistograms(), frame, sdt, xyPos, depth, depthInv, K, zNear, zFar, roi, mask, m_id, level, wJTJCollection, JTCollection, useNearestContourFG, threads));
+    parallel_for_(cv::Range(0, threads), Parallel_For_computeJacobiansGN(
+        object->getTCLCHistograms(), frame, sdt, xyPos, depth, depthInv, K,
+        zNear, zFar, roi, mask, m_id, level, wJTJCollection, JTCollection,
+        useNearestContourFG, a_h, s_h, threads));
     
     for(int i = 0; i < threads; i++)
     {
