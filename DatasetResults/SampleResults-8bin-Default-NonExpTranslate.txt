@@ -1,0 +1,182 @@
+GL Version 3.3.0 NVIDIA 516.59
+GLSL Version 3.30 NVIDIA via Cg compiler
+
+a_regular - ape (8-bins): 0.827000
+
+a_regular - bakingsoda (8-bins): 0.441000
+
+a_regular - benchviseblue (8-bins): 0.966000
+
+a_regular - broccolisoup (8-bins): 0.835000
+
+a_regular - cam (8-bins): 0.754000
+
+a_regular - can (8-bins): 0.784000
+
+a_regular - cat (8-bins): 0.953000
+
+a_regular - clown (8-bins): 0.872000
+
+a_regular - cube (8-bins): 0.535000
+
+a_regular - driller (8-bins): 0.855000
+
+a_regular - duck (8-bins): 0.874000
+
+a_regular - eggbox (8-bins): 0.555000
+
+a_regular - glue (8-bins): 0.355000
+
+a_regular - iron (8-bins): 0.800000
+
+a_regular - koalacandy (8-bins): 0.498000
+
+a_regular - lamp (8-bins): 0.902000
+
+a_regular - phone (8-bins): 0.745000
+
+a_regular - squirrel (8-bins): 0.982000
+
+b_dynamiclight - ape (8-bins): 0.813000
+
+b_dynamiclight - bakingsoda (8-bins): 0.428000
+
+b_dynamiclight - benchviseblue (8-bins): 0.949000
+
+b_dynamiclight - broccolisoup (8-bins): 0.837000
+
+b_dynamiclight - cam (8-bins): 0.772000
+
+b_dynamiclight - can (8-bins): 0.745000
+
+b_dynamiclight - cat (8-bins): 0.942000
+
+b_dynamiclight - clown (8-bins): 0.838000
+
+b_dynamiclight - cube (8-bins): 0.542000
+
+b_dynamiclight - driller (8-bins): 0.900000
+
+b_dynamiclight - duck (8-bins): 0.877000
+
+b_dynamiclight - eggbox (8-bins): 0.534000
+
+b_dynamiclight - glue (8-bins): 0.400000
+
+b_dynamiclight - iron (8-bins): 0.747000
+
+b_dynamiclight - koalacandy (8-bins): 0.508000
+
+b_dynamiclight - lamp (8-bins): 0.843000
+
+b_dynamiclight - phone (8-bins): 0.736000
+
+b_dynamiclight - squirrel (8-bins): 0.980000
+
+c_noisy - ape (8-bins): 0.793000
+
+c_noisy - bakingsoda (8-bins): 0.428000
+
+c_noisy - benchviseblue (8-bins): 0.903000
+
+c_noisy - broccolisoup (8-bins): 0.822000
+
+c_noisy - cam (8-bins): 0.648000
+
+c_noisy - can (8-bins): 0.640000
+
+c_noisy - cat (8-bins): 0.906000
+
+c_noisy - clown (8-bins): 0.737000
+
+c_noisy - cube (8-bins): 0.334000
+
+c_noisy - driller (8-bins): 0.830000
+
+c_noisy - duck (8-bins): 0.878000
+
+c_noisy - eggbox (8-bins): 0.394000
+
+c_noisy - glue (8-bins): 0.258000
+
+c_noisy - iron (8-bins): 0.708000
+
+c_noisy - koalacandy (8-bins): 0.458000
+
+c_noisy - lamp (8-bins): 0.739000
+
+c_noisy - phone (8-bins): 0.651000
+
+c_noisy - squirrel (8-bins): 0.964000
+
+d_occlusion - ape (8-bins): 0.779000
+
+d_occlusion - bakingsoda (8-bins): 0.414000
+
+d_occlusion - benchviseblue (8-bins): 0.888000
+
+d_occlusion - broccolisoup (8-bins): 0.781000
+
+d_occlusion - cam (8-bins): 0.716000
+
+d_occlusion - can (8-bins): 0.701000
+
+d_occlusion - cat (8-bins): 0.906000
+
+d_occlusion - clown (8-bins): 0.778000
+
+d_occlusion - cube (8-bins): 0.503000
+
+d_occlusion - driller (8-bins): 0.859000
+
+d_occlusion - duck (8-bins): 0.811000
+
+d_occlusion - eggbox (8-bins): 0.490000
+
+d_occlusion - glue (8-bins): 0.365000
+
+d_occlusion - iron (8-bins): 0.715000
+
+d_occlusion - koalacandy (8-bins): 0.474000
+
+d_occlusion - lamp (8-bins): 0.801000
+
+d_occlusion - phone (8-bins): 0.690000
+
+d_occlusion - squirrel (8-bins): 0.929000
+
+d_occlusion (modeled) - ape (8-bins): 0.793000
+
+d_occlusion (modeled) - bakingsoda (8-bins): 0.411000
+
+d_occlusion (modeled) - benchviseblue (8-bins): 0.902000
+
+d_occlusion (modeled) - broccolisoup (8-bins): 0.816000
+
+d_occlusion (modeled) - cam (8-bins): 0.720000
+
+d_occlusion (modeled) - can (8-bins): 0.700000
+
+d_occlusion (modeled) - cat (8-bins): 0.903000
+
+d_occlusion (modeled) - clown (8-bins): 0.792000
+
+d_occlusion (modeled) - cube (8-bins): 0.525000
+
+d_occlusion (modeled) - driller (8-bins): 0.871000
+
+d_occlusion (modeled) - duck (8-bins): 0.845000
+
+d_occlusion (modeled) - eggbox (8-bins): 0.521000
+
+d_occlusion (modeled) - glue (8-bins): 0.369000
+
+d_occlusion (modeled) - iron (8-bins): 0.722000
+
+d_occlusion (modeled) - koalacandy (8-bins): 0.492000
+
+d_occlusion (modeled) - lamp (8-bins): 0.795000
+
+d_occlusion (modeled) - phone (8-bins): 0.708000
+
+d_occlusion (modeled) - squirrel (8-bins): 0.956000
