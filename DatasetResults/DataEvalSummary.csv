@@ -1,73 +1,91 @@
-,FG Contour,Default,Perfect Motion Est,
-a_regular - ape (SIMPLIFIED):,0.865,0.864,,0.001
-a_regular - bakingsoda:,0.445,0.446,,-0.001
-a_regular - benchviseblue (SIMPLIFIED):,0.983,0.985,,-0.002
-a_regular - broccolisoup:,0.861,0.84,,0.021
-a_regular - cam (SIMPLIFIED):,0.884,0.88,,0.004
-a_regular - can (SIMPLIFIED):,0.88,0.89,,-0.01
-a_regular - cat (SIMPLIFIED):,0.956,0.958,,-0.002
-a_regular - clown:,0.921,0.927,,-0.00600000000000001
-a_regular - cube:,0.806,0.78,,0.026
-a_regular - driller (SIMPLIFIED):,0.945,0.948,,-0.003
-a_regular - duck (SIMPLIFIED):,0.889,0.872,,0.017
-a_regular - eggbox (SIMPLIFIED):,0.831,0.824,,0.00700000000000001
-a_regular - glue (SIMPLIFIED):,0.597,0.573,,0.024
-a_regular - iron (SIMPLIFIED):,0.894,0.874,,0.02
-a_regular - koalacandy:,0.576,0.552,,0.0239999999999999
-a_regular - lamp (SIMPLIFIED):,0.965,0.963,,0.002
-a_regular - phone (SIMPLIFIED):,0.864,0.859,,0.005
-a_regular - squirrel (SIMPLIFIED):,0.994,0.992,,0.002
-b_dynamiclight - ape (SIMPLIFIED):,0.869,0.857,,0.012
-b_dynamiclight - bakingsoda:,0.446,0.468,,-0.022
-b_dynamiclight - benchviseblue (SIMPLIFIED):,0.982,0.982,,0
-b_dynamiclight - broccolisoup:,0.858,0.831,,0.027
-b_dynamiclight - cam (SIMPLIFIED):,0.884,0.885,,-0.001
-b_dynamiclight - can (SIMPLIFIED):,0.881,0.882,,-0.001
-b_dynamiclight - cat (SIMPLIFIED):,0.953,0.955,,-0.002
-b_dynamiclight - clown:,0.92,0.922,,-0.002
-b_dynamiclight - cube:,0.795,0.765,,0.03
-b_dynamiclight - driller (SIMPLIFIED):,0.954,0.952,,0.002
-b_dynamiclight - duck (SIMPLIFIED):,0.887,0.875,,0.012
-b_dynamiclight - eggbox (SIMPLIFIED):,0.821,0.808,,0.0129999999999999
-b_dynamiclight - glue (SIMPLIFIED):,0.585,0.584,,0.001
-b_dynamiclight - iron (SIMPLIFIED):,0.828,0.816,,0.012
-b_dynamiclight - koalacandy:,0.586,0.545,,0.0409999999999999
-b_dynamiclight - lamp (SIMPLIFIED):,0.952,0.952,,0
-b_dynamiclight - phone (SIMPLIFIED):,0.859,0.856,,0.003
-b_dynamiclight - squirrel (SIMPLIFIED):,0.996,0.994,,0.002
-c_noisy - ape (SIMPLIFIED):,0.83,0.822,,0.00800000000000001
-c_noisy - bakingsoda:,0.437,0.454,,-0.017
-c_noisy - benchviseblue (SIMPLIFIED):,0.917,0.93,,-0.013
-c_noisy - broccolisoup:,0.857,0.825,,0.032
-c_noisy - cam (SIMPLIFIED):,0.682,0.677,,0.005
-c_noisy - can (SIMPLIFIED):,0.683,0.678,,0.005
-c_noisy - cat (SIMPLIFIED):,0.936,0.939,,-0.00299999999999989
-c_noisy - clown:,0.779,0.768,,0.011
-c_noisy - cube:,0.354,0.354,,0
-c_noisy - driller (SIMPLIFIED):,0.851,0.858,,-0.00700000000000001
-c_noisy - duck (SIMPLIFIED):,0.9,0.887,,0.013
-c_noisy - eggbox (SIMPLIFIED):,0.434,0.435,,-0.001
-c_noisy - glue (SIMPLIFIED):,0.278,0.284,,-0.00599999999999995
-c_noisy - iron (SIMPLIFIED):,0.712,0.704,,0.00800000000000001
-c_noisy - koalacandy:,0.474,0.45,,0.024
-c_noisy - lamp (SIMPLIFIED):,0.762,0.757,,0.005
-c_noisy - phone (SIMPLIFIED):,0.67,0.676,,-0.00600000000000001
-c_noisy - squirrel (SIMPLIFIED):,0.986,0.981,,0.005
-d_occlusion - ape (SIMPLIFIED):,0.822,0.809,,0.0129999999999999
-d_occlusion - bakingsoda:,0.433,0.434,,-0.001
-d_occlusion - benchviseblue (SIMPLIFIED):,0.937,0.93,,0.00700000000000001
-d_occlusion - broccolisoup:,0.778,0.763,,0.015
-d_occlusion - cam (SIMPLIFIED):,0.811,0.807,,0.004
-d_occlusion - can (SIMPLIFIED):,0.836,0.835,,0.001
-d_occlusion - cat (SIMPLIFIED):,0.905,0.912,,-0.00700000000000001
-d_occlusion - clown:,0.841,0.853,,-0.012
-d_occlusion - cube:,0.727,0.695,,0.032
-d_occlusion - driller (SIMPLIFIED):,0.913,0.917,,-0.004
-d_occlusion - duck (SIMPLIFIED):,0.811,0.801,,0.01
-d_occlusion - eggbox (SIMPLIFIED):,0.758,0.744,,0.014
-d_occlusion - glue (SIMPLIFIED):,0.538,0.525,,0.013
-d_occlusion - iron (SIMPLIFIED):,0.775,0.768,,0.00700000000000001
-d_occlusion - koalacandy:,0.555,0.51,,0.045
-d_occlusion - lamp (SIMPLIFIED):,0.893,0.898,,-0.005
-d_occlusion - phone (SIMPLIFIED):,0.799,0.795,,0.004
-d_occlusion - squirrel (SIMPLIFIED):,0.946,0.951,,-0.005
+Objects (* for possible simplification),Simple32 FG Contour,Simple32 Default,8 FG Contour,8 Default,8 ExpTranslate Default
+a_regular - ape*:,0.865,0.864,0.834,0.827,0.827
+a_regular - bakingsoda:,0.445,0.446,0.452,0.444,0.441
+a_regular - benchviseblue*:,0.983,0.985,0.968,0.968,0.966
+a_regular - broccolisoup:,0.861,0.84,0.864,0.842,0.835
+a_regular - cam*:,0.884,0.88,0.754,0.755,0.754
+a_regular - can*:,0.88,0.89,0.774,0.784,0.784
+a_regular - cat*:,0.956,0.958,0.952,0.95,0.953
+a_regular - clown:,0.921,0.927,0.864,0.875,0.872
+a_regular - cube:,0.806,0.78,0.561,0.546,0.535
+a_regular - driller*:,0.945,0.948,0.854,0.857,0.855
+a_regular - duck*:,0.889,0.872,0.897,0.875,0.874
+a_regular - eggbox*:,0.831,0.824,0.563,0.566,0.555
+a_regular - glue*:,0.597,0.573,0.356,0.36,0.355
+a_regular - iron*:,0.894,0.874,0.813,0.801,0.8
+a_regular - koalacandy:,0.576,0.552,0.546,0.513,0.498
+a_regular - lamp*:,0.965,0.963,0.902,0.898,0.902
+a_regular - phone*:,0.864,0.859,0.742,0.752,0.745
+a_regular - squirrel*:,0.994,0.992,0.985,0.982,0.982
+b_dynamiclight - ape*:,0.869,0.857,0.826,0.82,0.813
+b_dynamiclight - bakingsoda:,0.446,0.468,0.428,0.431,0.428
+b_dynamiclight - benchviseblue*:,0.982,0.982,0.943,0.947,0.949
+b_dynamiclight - broccolisoup:,0.858,0.831,0.864,0.835,0.837
+b_dynamiclight - cam*:,0.884,0.885,0.778,0.778,0.772
+b_dynamiclight - can*:,0.881,0.882,0.749,0.75,0.745
+b_dynamiclight - cat*:,0.953,0.955,0.941,0.944,0.942
+b_dynamiclight - clown:,0.92,0.922,0.833,0.841,0.838
+b_dynamiclight - cube:,0.795,0.765,0.557,0.54,0.542
+b_dynamiclight - driller*:,0.954,0.952,0.894,0.893,0.9
+b_dynamiclight - duck*:,0.887,0.875,0.888,0.879,0.877
+b_dynamiclight - eggbox*:,0.821,0.808,0.556,0.545,0.534
+b_dynamiclight - glue*:,0.585,0.584,0.39,0.4,0.4
+b_dynamiclight - iron*:,0.828,0.816,0.759,0.749,0.747
+b_dynamiclight - koalacandy:,0.586,0.545,0.554,0.504,0.508
+b_dynamiclight - lamp*:,0.952,0.952,0.833,0.836,0.843
+b_dynamiclight - phone*:,0.859,0.856,0.737,0.731,0.736
+b_dynamiclight - squirrel*:,0.996,0.994,0.984,0.982,0.98
+c_noisy - ape*:,0.83,0.822,0.803,0.798,0.793
+c_noisy - bakingsoda:,0.437,0.454,0.441,0.434,0.428
+c_noisy - benchviseblue*:,0.917,0.93,0.9,0.909,0.903
+c_noisy - broccolisoup:,0.857,0.825,0.845,0.821,0.822
+c_noisy - cam*:,0.682,0.677,0.645,0.653,0.648
+c_noisy - can*:,0.683,0.678,0.632,0.635,0.64
+c_noisy - cat*:,0.936,0.939,0.908,0.906,0.906
+c_noisy - clown:,0.779,0.768,0.731,0.729,0.737
+c_noisy - cube:,0.354,0.354,0.347,0.328,0.334
+c_noisy - driller*:,0.851,0.858,0.826,0.834,0.83
+c_noisy - duck*:,0.9,0.887,0.885,0.882,0.878
+c_noisy - eggbox*:,0.434,0.435,0.399,0.4,0.394
+c_noisy - glue*:,0.278,0.284,0.279,0.271,0.258
+c_noisy - iron*:,0.712,0.704,0.71,0.709,0.708
+c_noisy - koalacandy:,0.474,0.45,0.496,0.45,0.458
+c_noisy - lamp*:,0.762,0.757,0.743,0.736,0.739
+c_noisy - phone*:,0.67,0.676,0.653,0.653,0.651
+c_noisy - squirrel*:,0.986,0.981,0.967,0.967,0.964
+d_occlusion - ape*:,0.822,0.809,0.783,0.773,0.779
+d_occlusion - bakingsoda:,0.433,0.434,0.413,0.408,0.414
+d_occlusion - benchviseblue*:,0.937,0.93,0.89,0.886,0.888
+d_occlusion - broccolisoup:,0.778,0.763,0.799,0.777,0.781
+d_occlusion - cam*:,0.811,0.807,0.715,0.719,0.716
+d_occlusion - can*:,0.836,0.835,0.709,0.702,0.701
+d_occlusion - cat*:,0.905,0.912,0.904,0.91,0.906
+d_occlusion - clown:,0.841,0.853,0.769,0.778,0.778
+d_occlusion - cube:,0.727,0.695,0.517,0.492,0.503
+d_occlusion - driller*:,0.913,0.917,0.853,0.852,0.859
+d_occlusion - duck*:,0.811,0.801,0.835,0.812,0.811
+d_occlusion - eggbox*:,0.758,0.744,0.507,0.503,0.49
+d_occlusion - glue*:,0.538,0.525,0.371,0.366,0.365
+d_occlusion - iron*:,0.775,0.768,0.727,0.719,0.715
+d_occlusion - koalacandy:,0.555,0.51,0.507,0.465,0.474
+d_occlusion - lamp*:,0.893,0.898,0.793,0.794,0.801
+d_occlusion - phone*:,0.799,0.795,0.687,0.691,0.69
+d_occlusion - squirrel*:,0.946,0.951,0.929,0.931,0.929
+d_occlusion (modeled) - ape*:,,,0.8,0.8,0.793
+d_occlusion (modeled) - bakingsoda:,,,0.415,0.414,0.411
+d_occlusion (modeled) - benchviseblue*:,,,0.898,0.905,0.902
+d_occlusion (modeled) - broccolisoup:,,,0.829,0.812,0.816
+d_occlusion (modeled) - cam*:,,,0.726,0.72,0.72
+d_occlusion (modeled) - can*:,,,0.697,0.71,0.7
+d_occlusion (modeled) - cat*:,,,0.911,0.906,0.903
+d_occlusion (modeled) - clown:,,,0.781,0.794,0.792
+d_occlusion (modeled) - cube:,,,0.541,0.517,0.525
+d_occlusion (modeled) - driller*:,,,0.87,0.865,0.871
+d_occlusion (modeled) - duck*:,,,0.862,0.848,0.845
+d_occlusion (modeled) - eggbox*:,,,0.528,0.52,0.521
+d_occlusion (modeled) - glue*:,,,0.369,0.368,0.369
+d_occlusion (modeled) - iron*:,,,0.733,0.717,0.722
+d_occlusion (modeled) - koalacandy:,,,0.545,0.488,0.492
+d_occlusion (modeled) - lamp*:,,,0.792,0.796,0.795
+d_occlusion (modeled) - phone*:,,,0.703,0.702,0.708
+d_occlusion (modeled) - squirrel*:,,,0.951,0.95,0.956
