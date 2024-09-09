@@ -41,11 +41,12 @@ using namespace cv;
 
 
 OptimizationEngine::OptimizationEngine(
-    int width, int height, bool useNearestContourForFG, float a_h, float s_h,
+    int width, int height, bool useNearestContourForFG,
+    bool useExpTranslation, float a_h, float s_h,
     float tikhonovRotParam, float tikhonovTransParam)
 : useNearestContourFG(useNearestContourForFG)
+, useExpTranslation(useExpTranslation), a_h(a_h), s_h(s_h)
 , tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
-, a_h(a_h), s_h(s_h)
 {
     renderingEngine = RenderingEngine::Instance();
     
@@ -267,7 +268,7 @@ void OptimizationEngine::applyStepGaussNewton(Object3D* object, const Matx66f& w
     Matx44f T_cm = object->getPose();
     
     // apply the update step in SE3
-    T_cm = Transformations::exp(delta_xi)*T_cm;
+    T_cm = Transformations::exp(delta_xi, useExpTranslation)*T_cm;
     
     // set the updated pose
     object->setPose(T_cm);

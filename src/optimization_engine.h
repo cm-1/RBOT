@@ -62,6 +62,7 @@ public:
      *  @param width  The width in pixels of the camera frame at full resolution.
      *  @param height  The height in pixels of the camera frame at full resolution.
      *  @param useNearestContourForFG  Use nearest-contour pixels for both BG and FG calcs.
+     *  @param useExpTranslation If true, exp coords used for translation too.
      *  @param a_h Value for SRT3D smoothing function.
      *  @param s_h Value for SRT3D smoothing function. Should be nonzero!
      *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
@@ -70,7 +71,7 @@ public:
      */
     OptimizationEngine(
         int width, int height, bool useNearestContourForFG,
-        float a_h = 0.f, float s_h = 1.f,
+        bool useExpTranslation, float a_h = 0.f, float s_h = 1.f,
         float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f
     );
     
@@ -102,6 +103,7 @@ private:
     int height;
 
     bool useNearestContourFG;
+    bool useExpTranslation;
 
     // Parameters for SRT3D version of heaviside function.
     float a_h;

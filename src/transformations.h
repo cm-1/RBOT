@@ -154,9 +154,10 @@ public:
      *  homogeneous matrix representation.
      *
      *  @param xi A 6D vector of tiwst coordinates.
+     *  @param expTranslation If true, applies exp to whole 4x4 mat, not just rotation.
      *  @return A 4x4 homogenbeous rigid body transformation matrix corresponding to the twist coordinates.
      */
-    static cv::Matx44f exp(cv::Matx61f xi);
+    static cv::Matx44f exp(cv::Matx61f xi, bool expTranslation);
 };
 
 #endif //TRANSFORMATIONS_H

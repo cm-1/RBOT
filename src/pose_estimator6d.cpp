@@ -47,12 +47,12 @@ bool sortTemplateView(std::pair<float, TemplateView*> a, std::pair<float, Templa
 
 PoseEstimator6D::PoseEstimator6D(int width, int height, float zNear, float zFar,
 const cv::Matx33f &K, const cv::Matx14f &distCoeffs, vector<Object3D*> &objects,
-bool useNearestContourFG, float a_h, float s_h,
+bool useNearestContourFG, bool useExpTranslation, float a_h, float s_h,
 float tikhonovRotParam, float tikhonovTransParam)
 {
     renderingEngine = RenderingEngine::Instance();
     optimizationEngine = new OptimizationEngine(
-        width, height, useNearestContourFG, a_h, s_h, 
+        width, height, useNearestContourFG, useExpTranslation, a_h, s_h, 
         tikhonovRotParam, tikhonovTransParam
     );
     

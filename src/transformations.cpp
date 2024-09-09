@@ -167,7 +167,7 @@ Matx33f Transformations::axiator(Vec3f a)
                    -a2,  a1,  0);
 }
 
-Matx44f Transformations::exp(Matx61f xi)
+Matx44f Transformations::exp(Matx61f xi, bool expTranslation)
 {
     Matx44f T = Matx44f::eye();
     
@@ -176,6 +176,7 @@ Matx44f Transformations::exp(Matx61f xi)
     
     // translational part of the twist coordinates (velocity)
     Vec3f v = Vec3f(xi(3, 0), xi(4, 0), xi(5, 0));
+    Vec3f t = v;
     
     // angle of the twist/rotation
     float theta = norm(r);
@@ -202,7 +203,7 @@ Matx44f Transformations::exp(Matx61f xi)
         Matx33f w_x = Transformations::axiator(w);
         v /= theta;
         
-        Vec3f t = (I - R)*w_x*v + w*w.t()*v*theta;
+        if (expTranslation) t = (I - R)*w_x*v + w*w.t()*v*theta;
         
         // copy t to final pose
         T(0, 3) = t[0];
