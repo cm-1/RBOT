@@ -74,7 +74,7 @@ public:
      *  @param  K The intrinsic camera matrix.
      *  @param  distCoeffs The cameras lens distortion coefficients.
      *  @param  objects A collection of all 3D objects to be tracked.
-     *  @param useNearestContourFG use nearest-contour pixels for both FG & BG calcs.
+     *  @param useNearestContourFG Use nearest-contour pixels for both FG & BG calcs.
      *  @param useExpTranslation If true, exp coords used for translation too.
      *  @param a_h Value for SRT3D smoothing function.
      *  @param s_h Value for SRT3D smoothing function. Should be nonzero!

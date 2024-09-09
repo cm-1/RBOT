@@ -59,7 +59,7 @@ using namespace cv;
 
 #define USE_NEAREST_CONTOUR_FG true
 
-// SRT3D paper says that a=0.36f and s=0.001f performed best on RBOT dataset.
+// SRT3D paper says that a=0.36f and s~0 performed best on RBOT dataset.
 // Currently not the case when I try it (though I still have more work to do).
 // Instead, I get best results right now with a=0.5f, s=0.7f.
 // If you graph this version of the heaviside alongside RBOT's, then they look
