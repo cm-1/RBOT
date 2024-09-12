@@ -12,26 +12,31 @@ SET(OpenCV_STATIC OFF)
 
 # This is the same as before, except I've moved shaders to their own directory
 # for the sake of convenience.
+# NOTE: If you want to have/include subfolders, need GLOB_RECURSE.
 FILE(GLOB SOURCES src/*.cpp src/*.h src/*.hpp shaders/*.glsl)
 
 # The executable will need access to the shaders, frame, and .obj at a
 # local path. So, we'll need to copy these files to the executable's location.
 
 # This first command gets a list of all of the files that we need to copy.
+# NOTE: If you want to have/include subfolders, need GLOB_RECURSE.
 FILE(GLOB RESOURCE_FILES RELATIVE ${CMAKE_SOURCE_DIR}
     shaders/*.glsl
-	data/frame.png
-	data/squirrel_demo_low.obj
+    data/frame.png
+    data/squirrel_demo_low.obj
 )
 
-# This command gets the location of the executable.
-# It comes from the original CMakeLists.txt, but I moved it up to use it
-# before the next command.
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+# This command sets the executable location. It comes from the CMakeLists.txt of
+# the original git repo by Dr. Tjaden, except it used the older
+# EXECUTABLE_OUTPUT_PATH, which is superceded by CMAKE_RUNTIME_OUTPUT_DIRECTORY.
+# I also moved it up to use it before the following command.
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Finally, this command copies each file in the list to the right location.
+# This puts all data in the bin directory, which may not be GREAT practice, but
+# perhaps now's not the best time for extensive path changes in the code.
 foreach(RESOURCE_FILE ${RESOURCE_FILES})
-	configure_file(${RESOURCE_FILE} ${EXECUTABLE_OUTPUT_PATH}/${RESOURCE_FILE} COPYONLY)
+        configure_file(${RESOURCE_FILE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${RESOURCE_FILE} COPYONLY)
 endforeach()
 
 FIND_PACKAGE(OpenGL REQUIRED)
