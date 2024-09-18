@@ -37,6 +37,9 @@
 #ifndef OPTIMIZATION_ENGINE
 #define OPTIMIZATION_ENGINE
 
+#include <array>
+#include <vector>
+
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/calib3d.hpp>
@@ -91,10 +94,15 @@ public:
      *  @param  runs A factor specifiyng how many times the default number of iterations per level are supposed to be performed (default = 1).
      */
     void minimize(std::vector<cv::Mat> &imagePyramid, std::vector<Object3D*> &objects, int runs = 1);
+
+    // Level is the image pyramid level, row is the row of the Hessian diagonal,
+    // and iter is the iteration number done on the respective level.
+    float getHessianDiagVal(int level, int row, int iter);
+
+    // Called at the start of a new frame.
+    void clearHessianDiagLogging();
     
-private:
-    static OptimizationEngine *instance;
-    
+private:    
     RenderingEngine *renderingEngine;
     
     SignedDistanceTransform2D *SDT2D;
@@ -114,6 +122,8 @@ private:
     float tikhonovTransParam;
     cv::Matx66f tikhonovMat;
     cv::DecompTypes matInversionMethod;
+
+    std::array<std::array<std::vector<float>, 6>, 3> hessianDiagonals;
 
     void runIteration(std::vector<Object3D*> &objects, const std::vector<cv::Mat> &imagePyramid, int level);
     

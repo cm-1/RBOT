@@ -78,6 +78,8 @@ OptimizationEngine::~OptimizationEngine()
 
 void OptimizationEngine::minimize(vector<Mat>& imagePyramid, vector<Object3D*>& objects, int runs)
 {
+    clearHessianDiagLogging();
+
     // OPTIMIZATION ITERATIONS
     
     // level 2
@@ -96,6 +98,20 @@ void OptimizationEngine::minimize(vector<Mat>& imagePyramid, vector<Object3D*>& 
     for(int iter = 0; iter < runs*1; iter++)
     {
         runIteration(objects, imagePyramid, 0);
+    }
+}
+
+float OptimizationEngine::getHessianDiagVal(int level, int row, int iter)
+{
+    if (iter >= hessianDiagonals[level][row].size()) return -1.f;
+    return hessianDiagonals[level][row][iter];
+}
+
+void OptimizationEngine::clearHessianDiagLogging()
+{
+    for (auto& levArr : hessianDiagonals)
+    {
+        for (auto& rowVec : levArr) rowVec.clear();
     }
 }
 
@@ -183,7 +199,7 @@ void OptimizationEngine::runIteration(vector<Object3D*>& objects, const vector<M
             
             // compute the Jacobian terms (i.e. the gradient and the hessian approx.) needed for the Gauss-Newton step
             parallel_computeJacobians(objects[o], imagePyramid[level], croppedDepth, croppedDepthInv, sdt, xyPos, roi, croppedMask, m_id, level, wJTJ, JT, roi.height);
-            
+
             // update the pose by computing the Gauss-Newton step
             applyStepGaussNewton(objects[o], wJTJ, JT);
         }
@@ -222,6 +238,9 @@ void OptimizationEngine::parallel_computeJacobians(Object3D* object, const Mat& 
             wJTJ(j, i) = wJTJ(i, j);
         }
     }
+
+    for (size_t i = 0; i < 6; ++i)
+        hessianDiagonals[level][i].push_back(wJTJ(i, i));
 }
 
 Rect OptimizationEngine::compute2DROI(Object3D* object, const cv::Size& maxSize, int offset)

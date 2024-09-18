@@ -126,6 +126,10 @@ public:
      */
     void reset();
     
+    // Right now, for simplicity, we'll just get the value from the 1st iters
+    // in a frame.
+    float getFirstHessianDiagVal(int level, int row);
+
 private:
     int width;
     int height;

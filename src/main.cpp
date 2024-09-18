@@ -37,6 +37,11 @@
 // other datasets.
 
 #include <fstream>
+#include <vector>
+#include <array>
+#include <set>
+#include <iostream>
+
 #include <QApplication>
 #include <QThread>
 #include <QDir>
@@ -93,6 +98,9 @@ struct EvalConfig {
 std::vector<cv::Matx44f> gtPosesMain;
 std::vector<cv::Matx44f> gtPosesOccluding;
 
+
+std::array<std::array<std::multiset<float>, 6>, 3> hessianDiagsSuccessful;
+std::array<std::array<std::multiset<float>, 6>, 3> hessianDiagsFailed;
 
 cv::Mat drawResultOverlay(const vector<Object3D*>& objects, const cv::Mat& frame)
 {
@@ -382,6 +390,20 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
 
         bool success = MeasureSuccess(objects[0]->getPose(), gtPosesMain[i + 1]);
 
+        for (int lev = 0; lev < 3; ++lev)
+        {
+            for (int row = 0; row < 6; ++row)
+            {
+                float val = poseEstimator->getFirstHessianDiagVal(lev, row);
+                // In the event a level was skipped by the optimization alg,
+                // then -1.f is returned, which we should ignore.
+                if (val < 0.f) continue;
+                
+                if (success) hessianDiagsSuccessful[lev][row].insert(val);
+                else hessianDiagsFailed[lev][row].insert(val);
+            }
+        }
+
         float successFloat = success ? 1.f : 0.f;
         totalSuccesses += successFloat;
         if (!success)
@@ -437,6 +459,45 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     objects.clear();
     
     delete poseEstimator;
+
+    std::cout << "Hessian diag min/max/mean:" << std::endl;
+    
+
+    for (int lev = 0; lev < 3; ++lev)
+    {
+        std::vector<float> successMeans;
+        std::vector<float> failureMeans;
+        for (int r = 0; r < 6; ++r)
+        {
+            float meanSuccess = 0.f;
+            float meanFailure = 0.f;
+            for (const auto& val : hessianDiagsSuccessful[lev][r])
+                meanSuccess += val;
+            for (const auto& val : hessianDiagsFailed[lev][r])
+                meanFailure += val;
+            meanSuccess /= hessianDiagsSuccessful[lev][r].size();
+            meanFailure /= hessianDiagsSuccessful[lev][r].size();
+            successMeans.push_back(meanSuccess);
+            failureMeans.push_back(meanFailure);
+        }
+        for (int r = 0; r < 6; ++r)
+        {
+            std::cout << *hessianDiagsSuccessful[lev][r].begin() << " "
+                << "(" << *hessianDiagsFailed[lev][r].begin() << ")\t";
+        }
+        std::cout << "||" << std::endl;
+        for (int r = 0; r < 6; ++r)
+        {
+            std::cout << *std::prev(hessianDiagsSuccessful[lev][r].end())
+                << " (" << *std::prev(hessianDiagsFailed[lev][r].end()) << ")\t";
+        }
+        std::cout << "||" << std::endl;
+        for (int r = 0; r < 6; ++r)
+        {
+            std::cout << successMeans[r] << " (" << failureMeans[r] << ")\t";
+        }
+        std::cout << "\n" << std::string(80, '-') << std::endl;
+    }
 
     return totalSuccesses / NUM_FRAMES_PER_CONFIG;
 }

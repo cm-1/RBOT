@@ -477,3 +477,8 @@ void PoseEstimator6D::reset()
     
     initialized = false;
 }
+
+float PoseEstimator6D::getFirstHessianDiagVal(int level, int row)
+{
+    return optimizationEngine->getHessianDiagVal(level, row, 0);
+}
