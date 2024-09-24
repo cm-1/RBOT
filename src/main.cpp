@@ -62,14 +62,14 @@ using namespace cv;
 
 #define SHOW_RESULTS false
 
-#define USE_NEAREST_CONTOUR_FG true
+#define USE_NEAREST_CONTOUR_FG false
 
 // SRT3D paper says that a=0.36f and s~0 performed best on RBOT dataset.
 // Currently not the case when I try it (though I still have more work to do).
 // Instead, I get best results right now with a=0.5f, s=0.7f.
 // If you graph this version of the heaviside alongside RBOT's, then they look
 // pretty similar, which would explain the performance similarity.
-#define SRT3D_A_H 0.5f // Set to zero to use original RBOT heaviside function.
+#define SRT3D_A_H 0.0f // Set to zero to use original RBOT heaviside function.
 #define SRT3D_S_H 0.7f // This should always be nonzero!
 
 // If true, exponential coordinates will be used for the whole 6-DOF pose,
@@ -350,11 +350,16 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
         objects[1]->setPose(gtPosesOccluding[0]);
         objects[1]->setInitialPose(gtPosesOccluding[0]);
     }
+
+    OptimizationSettings settings;
+    settings.useNearestContourForFG = USE_NEAREST_CONTOUR_FG;
+    settings.useExpTranslation = USE_EXP_TRANSLATION;
+    settings.a_h = SRT3D_A_H;
+    settings.s_h = SRT3D_S_H;
     
     // create the pose estimator
     PoseEstimator6D* poseEstimator = new PoseEstimator6D(
-        width, height, zNear, zFar, K, distCoeffs, objects, 
-        USE_NEAREST_CONTOUR_FG, USE_EXP_TRANSLATION, SRT3D_A_H, SRT3D_S_H
+        width, height, zNear, zFar, K, distCoeffs, objects, settings
     );
     
     // move the OpenGL context for offscreen rendering to the current thread, if run in a seperate QT worker thread (unnessary in this example)

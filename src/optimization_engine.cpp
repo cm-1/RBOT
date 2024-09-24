@@ -41,12 +41,11 @@ using namespace cv;
 
 
 OptimizationEngine::OptimizationEngine(
-    int width, int height, bool useNearestContourForFG,
-    bool useExpTranslation, float a_h, float s_h,
-    float tikhonovRotParam, float tikhonovTransParam)
-: useNearestContourFG(useNearestContourForFG)
-, useExpTranslation(useExpTranslation), a_h(a_h), s_h(s_h)
-, tikhonovRotParam(tikhonovRotParam), tikhonovTransParam(tikhonovTransParam)
+    int width, int height, OptimizationSettings optimizationSettings)
+: useNearestContourFG(optimizationSettings.useNearestContourForFG)
+, useExpTranslation(optimizationSettings.useExpTranslation)
+, a_h(optimizationSettings.a_h), s_h(optimizationSettings.s_h)
+, settings(optimizationSettings)
 {
     renderingEngine = RenderingEngine::Instance();
     
@@ -55,18 +54,22 @@ OptimizationEngine::OptimizationEngine(
     this->width = width;
     this->height = height;
 
-    tikhonovMat = cv::Matx66f::eye();
+    
     for (int i = 0; i < 3; ++i)
     {
-        tikhonovMat(i, i) *= tikhonovRotParam;
-        tikhonovMat(i + 3, i + 3) *= tikhonovTransParam;
+        tikhonovMats[i] = cv::Matx66f::eye();
+        for (int j = 0; j < 3; ++j)
+        {
+            tikhonovMats[i](j, j) *= settings.tikhonovRotParams[i];
+            tikhonovMats[i](j + 3, j + 3) *= settings.tikhonovTransParams[i];
+        }
     }
 
     // If no Tikhonov regularization is used, the Hessian approximation will be
     // positive-definite, and so Cholesky can be used. Otherwise, it will just
     // be symmetric, which is not sufficient.
     matInversionMethod = cv::DECOMP_LU;
-    if (tikhonovRotParam == 0.f && tikhonovTransParam == 0.f)
+    if (settings.tikhonovRotParams[0] == 0.f && settings.tikhonovTransParams[0] == 0.f)
         matInversionMethod = cv::DECOMP_CHOLESKY;
 }
 
@@ -201,7 +204,7 @@ void OptimizationEngine::runIteration(vector<Object3D*>& objects, const vector<M
             parallel_computeJacobians(objects[o], imagePyramid[level], croppedDepth, croppedDepthInv, sdt, xyPos, roi, croppedMask, m_id, level, wJTJ, JT, roi.height);
 
             // update the pose by computing the Gauss-Newton step
-            applyStepGaussNewton(objects[o], wJTJ, JT);
+            applyStepGaussNewton(objects[o], wJTJ, JT, level);
         }
     }
 }
@@ -278,10 +281,10 @@ Rect OptimizationEngine::compute2DROI(Object3D* object, const cv::Size& maxSize,
     return roi;
 }
 
-void OptimizationEngine::applyStepGaussNewton(Object3D* object, const Matx66f& wJTJ, const Matx61f& JT)
+void OptimizationEngine::applyStepGaussNewton(Object3D* object, const Matx66f& wJTJ, const Matx61f& JT, int level)
 {
     // Gauss-Newton step in se3
-    Matx61f delta_xi = -(wJTJ - tikhonovMat).inv(matInversionMethod)*JT;
+    Matx61f delta_xi = -(wJTJ - tikhonovMats[level]).inv(matInversionMethod)*JT;
 
     // get the current pose
     Matx44f T_cm = object->getPose();

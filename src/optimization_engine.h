@@ -49,6 +49,29 @@
 #include "tclc_histograms.h"
 #include "object3d.h"
 
+
+
+
+
+/** @struct OptimizationSettings
+ *  @brief A struct to hold settings for the OptimizationEngine, many based on SRT3D.
+ *  @param useNearestContourForFG  Use nearest-contour pixels for both BG and FG calcs.
+ *  @param useExpTranslation If true, exp coords used for translation too.
+ *  @param a_h Value for SRT3D smoothing function.
+ *  @param s_h Value for SRT3D smoothing function. Should be nonzero!
+ *  @param tikhonovRotParams Tikhonov regularization parameters for rotation.
+ *  @param tikhonovTransParams Tikhonov regularization parameters for translation.
+ */
+struct OptimizationSettings
+{
+    bool useNearestContourForFG = false;
+    bool useExpTranslation = false;
+    float a_h = 0.f;
+    float s_h = 1.f;
+    std::array<float, 3> tikhonovRotParams = {0.f, 0.f, 0.f};
+    std::array<float, 3> tikhonovTransParams = {0.f, 0.f, 0.f};
+};
+
 /**
  *  This class implements an iterative Gauss-Newton optimization strategy for
  *  minimizing the region-based cost function with respect to the 6DOF
@@ -64,18 +87,10 @@ public:
      *
      *  @param width  The width in pixels of the camera frame at full resolution.
      *  @param height  The height in pixels of the camera frame at full resolution.
-     *  @param useNearestContourForFG  Use nearest-contour pixels for both BG and FG calcs.
-     *  @param useExpTranslation If true, exp coords used for translation too.
-     *  @param a_h Value for SRT3D smoothing function.
-     *  @param s_h Value for SRT3D smoothing function. Should be nonzero!
-     *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
-     *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
-     * 
+     *  @param optimizationSettings Settings for optimization, including SRT3D settings.
      */
     OptimizationEngine(
-        int width, int height, bool useNearestContourForFG,
-        bool useExpTranslation, float a_h = 0.f, float s_h = 1.f,
-        float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f
+        int width, int height, OptimizationSettings optimizationSettings
     );
     
     ~OptimizationEngine();
@@ -118,10 +133,10 @@ private:
     float s_h;
 
     // Parameters for Tikhonov regularization.
-    float tikhonovRotParam;
-    float tikhonovTransParam;
-    cv::Matx66f tikhonovMat;
+    std::array<cv::Matx66f, 3> tikhonovMats;
     cv::DecompTypes matInversionMethod;
+
+    OptimizationSettings settings;
 
     std::array<std::array<std::vector<float>, 6>, 3> hessianDiagonals;
 
@@ -131,7 +146,7 @@ private:
     
     cv::Rect compute2DROI(Object3D *object, const cv::Size &maxSize, int offset);
     
-    void applyStepGaussNewton(Object3D *object, const cv::Matx66f &wJTJ, const cv::Matx61f &JT);
+    void applyStepGaussNewton(Object3D *object, const cv::Matx66f &wJTJ, const cv::Matx61f &JT, int level);
 };
 
 

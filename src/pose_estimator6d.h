@@ -74,18 +74,11 @@ public:
      *  @param  K The intrinsic camera matrix.
      *  @param  distCoeffs The cameras lens distortion coefficients.
      *  @param  objects A collection of all 3D objects to be tracked.
-     *  @param useNearestContourFG Use nearest-contour pixels for both FG & BG calcs.
-     *  @param useExpTranslation If true, exp coords used for translation too.
-     *  @param a_h Value for SRT3D smoothing function.
-     *  @param s_h Value for SRT3D smoothing function. Should be nonzero!
-     *  @param tikhonovRotParam Tikhonov regularization parameter for rotation.
-     *  @param tikhonovTransParam Tikhonov regularization parameter for translation.
+     *  @param optimizationSettings Settings for OptimizationEngine object.
      */
     PoseEstimator6D(int width, int height, float zNear, float zFar, const cv::Matx33f &K,
     const cv::Matx14f &distCoeffs, std::vector<Object3D*> &objects,
-    bool useNearestContourFG, bool useExpTranslation,
-    float a_h = 0.f, float s_h = 1.f, 
-    float tikhonovRotParam = 0.f, float tikhonovTransParam = 0.f);
+    OptimizationSettings optimizationSettings);
     
     ~PoseEstimator6D();
     
