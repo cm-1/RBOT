@@ -1,0 +1,90 @@
+a_regular - ape (SIMPLIFIED): 0.862000
+a_regular - bakingsoda: 0.451000
+a_regular - benchviseblue (SIMPLIFIED): 0.983000
+a_regular - broccolisoup: 0.840000
+a_regular - cam (SIMPLIFIED): 0.881000
+a_regular - can (SIMPLIFIED): 0.894000
+a_regular - cat (SIMPLIFIED): 0.954000
+a_regular - clown: 0.927000
+a_regular - cube: 0.773000
+a_regular - driller (SIMPLIFIED): 0.949000
+a_regular - duck (SIMPLIFIED): 0.879000
+a_regular - eggbox (SIMPLIFIED): 0.820000
+a_regular - glue (SIMPLIFIED): 0.569000
+a_regular - iron (SIMPLIFIED): 0.879000
+a_regular - koalacandy: 0.546000
+a_regular - lamp (SIMPLIFIED): 0.963000
+a_regular - phone (SIMPLIFIED): 0.861000
+a_regular - squirrel (SIMPLIFIED): 0.992000
+b_dynamiclight - ape (SIMPLIFIED): 0.858000
+b_dynamiclight - bakingsoda: 0.473000
+b_dynamiclight - benchviseblue (SIMPLIFIED): 0.984000
+b_dynamiclight - broccolisoup: 0.833000
+b_dynamiclight - cam (SIMPLIFIED): 0.881000
+b_dynamiclight - can (SIMPLIFIED): 0.886000
+b_dynamiclight - cat (SIMPLIFIED): 0.954000
+b_dynamiclight - clown: 0.925000
+b_dynamiclight - cube: 0.762000
+b_dynamiclight - driller (SIMPLIFIED): 0.947000
+b_dynamiclight - duck (SIMPLIFIED): 0.868000
+b_dynamiclight - eggbox (SIMPLIFIED): 0.811000
+b_dynamiclight - glue (SIMPLIFIED): 0.579000
+b_dynamiclight - iron (SIMPLIFIED): 0.818000
+b_dynamiclight - koalacandy: 0.547000
+b_dynamiclight - lamp (SIMPLIFIED): 0.950000
+b_dynamiclight - phone (SIMPLIFIED): 0.858000
+b_dynamiclight - squirrel (SIMPLIFIED): 0.993000
+c_noisy - ape (SIMPLIFIED): 0.821000
+c_noisy - bakingsoda: 0.450000
+c_noisy - benchviseblue (SIMPLIFIED): 0.927000
+c_noisy - broccolisoup: 0.826000
+c_noisy - cam (SIMPLIFIED): 0.673000
+c_noisy - can (SIMPLIFIED): 0.676000
+c_noisy - cat (SIMPLIFIED): 0.941000
+c_noisy - clown: 0.773000
+c_noisy - cube: 0.354000
+c_noisy - driller (SIMPLIFIED): 0.856000
+c_noisy - duck (SIMPLIFIED): 0.888000
+c_noisy - eggbox (SIMPLIFIED): 0.439000
+c_noisy - glue (SIMPLIFIED): 0.284000
+c_noisy - iron (SIMPLIFIED): 0.704000
+c_noisy - koalacandy: 0.443000
+c_noisy - lamp (SIMPLIFIED): 0.768000
+c_noisy - phone (SIMPLIFIED): 0.672000
+c_noisy - squirrel (SIMPLIFIED): 0.983000
+d_occlusion - ape (SIMPLIFIED): 0.808000
+d_occlusion - bakingsoda: 0.437000
+d_occlusion - benchviseblue (SIMPLIFIED): 0.931000
+d_occlusion - broccolisoup: 0.766000
+d_occlusion - cam (SIMPLIFIED): 0.815000
+d_occlusion - can (SIMPLIFIED): 0.837000
+d_occlusion - cat (SIMPLIFIED): 0.913000
+d_occlusion - clown: 0.853000
+d_occlusion - cube: 0.698000
+d_occlusion - driller (SIMPLIFIED): 0.915000
+d_occlusion - duck (SIMPLIFIED): 0.798000
+d_occlusion - eggbox (SIMPLIFIED): 0.743000
+d_occlusion - glue (SIMPLIFIED): 0.527000
+d_occlusion - iron (SIMPLIFIED): 0.768000
+d_occlusion - koalacandy: 0.504000
+d_occlusion - lamp (SIMPLIFIED): 0.889000
+d_occlusion - phone (SIMPLIFIED): 0.789000
+d_occlusion - squirrel (SIMPLIFIED): 0.951000
+d_occlusion (modeled (SIMPLIFIED)) - ape (SIMPLIFIED): 0.686000
+d_occlusion (modeled) - bakingsoda: 0.431000
+d_occlusion (modeled (SIMPLIFIED)) - benchviseblue (SIMPLIFIED): 0.724000
+d_occlusion (modeled) - broccolisoup: 0.802000
+d_occlusion (modeled (SIMPLIFIED)) - cam (SIMPLIFIED): 0.696000
+d_occlusion (modeled (SIMPLIFIED)) - can (SIMPLIFIED): 0.671000
+d_occlusion (modeled (SIMPLIFIED)) - cat (SIMPLIFIED): 0.731000
+d_occlusion (modeled) - clown: 0.879000
+d_occlusion (modeled) - cube: 0.733000
+d_occlusion (modeled (SIMPLIFIED)) - driller (SIMPLIFIED): 0.773000
+d_occlusion (modeled (SIMPLIFIED)) - duck (SIMPLIFIED): 0.706000
+d_occlusion (modeled (SIMPLIFIED)) - eggbox (SIMPLIFIED): 0.647000
+d_occlusion (modeled (SIMPLIFIED)) - glue (SIMPLIFIED): 0.470000
+d_occlusion (modeled (SIMPLIFIED)) - iron (SIMPLIFIED): 0.610000
+d_occlusion (modeled) - koalacandy: 0.529000
+d_occlusion (modeled (SIMPLIFIED)) - lamp (SIMPLIFIED): 0.703000
+d_occlusion (modeled (SIMPLIFIED)) - phone (SIMPLIFIED): 0.671000
+d_occlusion (modeled (SIMPLIFIED)) - squirrel (SIMPLIFIED): 0.787000
