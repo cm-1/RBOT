@@ -69,7 +69,7 @@ using namespace cv;
 // Instead, I get best results right now with a=0.5f, s=0.7f.
 // If you graph this version of the heaviside alongside RBOT's, then they look
 // pretty similar, which would explain the performance similarity.
-#define SRT3D_A_H 0.0f // Set to zero to use original RBOT heaviside function.
+#define SRT3D_A_H 0.0f //0.36f // Set to zero to use original RBOT heaviside function.
 #define SRT3D_S_H 0.7f // This should always be nonzero!
 
 // If true, exponential coordinates will be used for the whole 6-DOF pose,
@@ -77,7 +77,7 @@ using namespace cv;
 #define USE_EXP_TRANSLATION true
 
 // Some parameters to prevent program from using more RAM than available:
-#define ALLOW_SIMPLER_MESHES false // For meshes in RBOT paper, set to "false"
+#define ALLOW_SIMPLER_MESHES true // For meshes in RBOT paper, set to "false"
 #define NUM_HIST_BINS 8 // Default, for RBOT paper, is 32
 
 const float TRANS_ERROR_THRESH = 1000 * 0.05f;
@@ -356,6 +356,8 @@ float EvalSingleConfig(const EvalConfig& run_configuration)
     settings.useExpTranslation = USE_EXP_TRANSLATION;
     settings.a_h = SRT3D_A_H;
     settings.s_h = SRT3D_S_H;
+    // settings.tikhonovRotParams = {5.0e+11, 5.0e+10, 5.0e+09};
+    // settings.tikhonovTransParams = {500000, 50000, 50000};
     
     // create the pose estimator
     PoseEstimator6D* poseEstimator = new PoseEstimator6D(
